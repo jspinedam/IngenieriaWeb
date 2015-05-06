@@ -1,0 +1,89 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.action.excludePattern" value="/ControllerAdministrarAdministradores"/>
+    <include file="example.xml"/>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+         
+        <!-- Index E.S.C -->
+        <action name="iniciarLogin" class="com.shoppingcenter.controllers.ControllerIndex" method="loginSistema">
+            <result name="success_administrador">administrador/inicio_administrador.jsp</result>
+            <result name="failure">index.jsp</result>
+        </action>
+        <!-- -->
+        <action name="gestionarAdministrador" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="gestionarAdministrador">
+            <result name="success_gestionar_administradores">administrador/gestionar_administradores.jsp</result>
+        </action>
+        <action name="registrarAdministrador" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="registrarAdministrador">
+            <result name="success_registrar_administrador">administrador/registrar_administrador.jsp</result>
+        </action>
+        <action name="atrasInicioAdministrador" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="atrasInicioAdministrador">
+            <result name="success_inicio_administrador">administrador/inicio_administrador.jsp</result>
+        </action>
+        <!-- -->
+        <action name="gestionarCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="gestionarCliente">
+            <result name="success_gestionar_clientes">cliente/gestionar_clientes.jsp</result>
+        </action>
+        <action name="registrarCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="registrarCliente">
+            <result name="success_registrar_cliente">cliente/registrar_cliente.jsp</result>
+            <!--
+            CAMBIO success_inicio_administrador por success_registrar_cliente
+            -->
+        </action>
+        <action name="atrasInicioCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="atrasInicioCliente">
+            <result name="success_inicio_cliente">index.jsp</result>
+        </action>
+        <!-- -->
+        <action name="gestionarTrabajador" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="gestionarTrabajador">
+            <result name="success_gestionar_trabajadores">trabajador/gestionar_trabajadores.jsp</result>
+        </action>
+        <action name="registrarTrabajador" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="registrarTrabajador">
+            <result name="success_registrar_trabajador">trabajador/registrar_trabajador.jsp</result>
+        </action>
+        <action name="atrasInicioTrabajador" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="atrasInicioTrabajador">
+            <result name="success_inicio_trabajador">trabajador/inicio_trabajador.jsp</result>
+        </action>
+        <!-- -->
+        <action name="consultarLocales" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarLocales">
+            <result name="success_gestionar_localescentrocomercial">localcentrocomercial/gestionar_localescentrocomercial.jsp</result>
+        </action>
+        <action name="registrarLocal" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="registrarLocal">
+            <result name="success_registrar_localescentrocomercial">localcentrocomercial/registrar_localcentrocomercial.jsp</result>
+        </action>
+        <!-- -->
+        
+        <!-- -->
+        <!-- Consultas de Usuarios -->
+        
+        <action name="consultarClientes" class="com.shoppingcenter.controllers.ControllerAdministrarClientes" method="buscarClientesPorParametros">
+           
+        </action>
+        <action name="consultarTrabajadores" class="com.shoppingcenter.controllers.ControllerAdministrarTrabajadores" method="buscarTrabajadoresPorParametros">
+           
+        </action>
+        <!-- Registrar Usuarios -->
+        <action name="registrarCliente" class="com.shoppingcenter.controllers.ControllerRegistrarCliente" method="registrarNuevoCliente">
+            <result name="success_inicio">index.jsp</result>
+            <result name="failure">cliente/registrar_cliente.jsp</result>
+        </action>
+        <action name="registrarNuevoAdministrador" class="com.shoppingcenter.controllers.ControllerRegistrarAdministrador" method="registrarNuevoAdministrador">
+            <result name="success_gestionar_administradores">administrador/gestionar_administradores.jsp</result>
+            <result name="failure">administrador/registrar_administrador.jsp</result>
+        </action>
+        <!-- Editar Usuarios -->
+        
+        <!-- Locales Centro Comercial -->
+        <action name="registrarLocalCentroComercial" class="com.shoppingcenter.controllers.ControllerRegistrarLocalCentroComercial" method="registrarNuevoLocal">
+            <result name="success_gestionar_localescentrocomercial">localcentrocomercial/gestionar_localescentrocomercial.jsp</result>
+            <result name="failure">localcentrocomercial/registrar_localcentrocomercial.jsp</result>
+        </action>
+        <action name="registrarNuevoTrabajador" class="com.shoppingcenter.controllers.ControllerRegistrarTrabajador" method="registrarNuevoTrabajador">
+            <result name="succes_gestionar_trabajadores">trabajador/gestionar_trabajadores.jsp</result>
+            <result name="failure">trabajador/registrar_trabajador.jsp</result>
+        </action>
+      
+    </package>
+</struts>

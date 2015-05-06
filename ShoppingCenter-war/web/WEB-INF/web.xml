@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarAdministradoresBO</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarAdministradoresBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarClientesBO</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarClientesBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarTrabajadoresBO</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarTrabajadoresBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarLocalesCentroComercialBO</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarLocalesCentroComercialBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarIndexBO</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarIndexBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarClientesBO1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarClientesBORemote</remote>
+    </ejb-ref>
+</web-app>
