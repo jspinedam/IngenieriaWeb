@@ -28,7 +28,6 @@ import org.apache.struts2.interceptor.SessionAware;
  * @author Pineda
  */
 public class ControllerIndex extends ActionSupport implements Serializable, SessionAware {
-    AdministrarGestionarClientesBORemote XXX= lookupAdministrarGestionarClientesBORemote();
 
     AdministrarIndexBORemote administrarIndexBO = lookupAdministrarIndexBORemote();
 
@@ -44,27 +43,30 @@ public class ControllerIndex extends ActionSupport implements Serializable, Sess
     public String loginSistema() {
         String mensajeSiguiente = "";
         if (validarCredencialesLogin() == true) {
-            mensajeSiguiente = "success_administrador";
+            mensajeSiguiente = "failure";
             Persona personaLogin = administrarIndexBO.obtenerPersonaPorUserContrasenia(usuario, contrasenia);
-            System.out.println("Dato .... " + XXX.MetodoPrueba());
             if (null != personaLogin) {
-                Administrador objetoAdministrador = administrarIndexBO.obtenerAdministradorPorIDPersona(personaLogin.getIdpersona());
-                if (null != objetoAdministrador) {
-                    UsuarioLogin usuarioLogin = new UsuarioLogin();
-                    usuarioLogin.setTipoUsuario("ADMINISTRADOR");
-                    usuarioLogin.setUsuarioConectado(objetoAdministrador.getPersona().getNombreusuario());
-                    session.put("SESSION_USER", usuarioLogin);
-                    ActionContext.getContext().setSession(session);
-                    mensajeSiguiente = "success_administrador";
-                } else {
-                    Cliente objetoCliente = administrarIndexBO.obtenerClientePorIDPersona(personaLogin.getIdpersona());
-                    if (null != objetoCliente) {
+                if (personaLogin.getTipousuario().equalsIgnoreCase("A")) {
+                    Administrador objetoAdministrador = administrarIndexBO.obtenerAdministradorPorIDPersona(personaLogin.getIdpersona());
+                    if (null != objetoAdministrador) {
                         UsuarioLogin usuarioLogin = new UsuarioLogin();
-                        usuarioLogin.setTipoUsuario("CLIENTE");
-                        usuarioLogin.setUsuarioConectado(objetoCliente.getPersona().getNombreusuario());
+                        usuarioLogin.setTipoUsuario("ADMINISTRADOR");
+                        usuarioLogin.setUsuarioConectado(objetoAdministrador.getPersona().getNombreusuario());
                         session.put("SESSION_USER", usuarioLogin);
                         ActionContext.getContext().setSession(session);
-                        mensajeSiguiente = "success_cliente";
+                        mensajeSiguiente = "success_administrador";
+                    }
+                } else {
+                    if (personaLogin.getTipousuario().equalsIgnoreCase("C")) {
+                        Cliente objetoCliente = administrarIndexBO.obtenerClientePorIDPersona(personaLogin.getIdpersona());
+                        if (null != objetoCliente) {
+                            UsuarioLogin usuarioLogin = new UsuarioLogin();
+                            usuarioLogin.setTipoUsuario("CLIENTE");
+                            usuarioLogin.setUsuarioConectado(objetoCliente.getPersona().getNombreusuario());
+                            session.put("SESSION_USER", usuarioLogin);
+                            ActionContext.getContext().setSession(session);
+                            mensajeSiguiente = "success_cliente";
+                        }
                     } else {
                         Trabajador objetoTrabajador = administrarIndexBO.obtenerTrabajadorPorIDPersona(personaLogin.getIdpersona());
                         if (null != objetoTrabajador) {

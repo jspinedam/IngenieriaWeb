@@ -19,6 +19,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class PersonaFacade extends AbstractFacade<Persona> {
+
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -30,7 +31,8 @@ public class PersonaFacade extends AbstractFacade<Persona> {
     public PersonaFacade() {
         super(Persona.class);
     }
-  public Persona buscarPersonaPorID(BigInteger idRegistro) {
+
+    public Persona buscarPersonaPorID(BigInteger idRegistro) {
         try {
             em.clear();
             Query query = em.createQuery("SELECT p FROM Persona p WHERE p.idpersona=:idRegistro");
@@ -71,6 +73,10 @@ public class PersonaFacade extends AbstractFacade<Persona> {
             query.setParameter("usuario", usuario);
             query.setParameter("contrasenia", contrasenia);
             Persona registro = (Persona) query.getSingleResult();
+            System.out.println("usuario " + usuario);
+            System.out.println("contrasennia " + contrasenia);
+            System.out.println("usuario " + registro.getNombreusuario());
+            System.out.println("passwoedUsuario " + registro.getPasswordusuario());
             return registro;
         } catch (Exception e) {
             System.out.println("Error obtenerPersonaPorInformacionUsuario PersonaDAO : " + e.toString());
@@ -92,7 +98,7 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         }
     }
 
-    public Persona buscarPersonaPorUsuario(String usuario)  {
+    public Persona buscarPersonaPorUsuario(String usuario) {
         try {
             em.clear();
             Query query = em.createQuery("SELECT p FROM Persona p WHERE p.nombreusuario=:usuario");
@@ -104,5 +110,5 @@ public class PersonaFacade extends AbstractFacade<Persona> {
             System.out.println("Error buscarPersonaPorUsuario PersonaDAO : " + e.toString());
             return null;
         }
-    } 
+    }
 }

@@ -11,6 +11,7 @@
         <!-- Index E.S.C -->
         <action name="iniciarLogin" class="com.shoppingcenter.controllers.ControllerIndex" method="loginSistema">
             <result name="success_administrador">administrador/inicio_administrador.jsp</result>
+            <result name="success_trabajador">trabajador/inicio_trabajador.jsp</result>
             <result name="failure">index.jsp</result>
         </action>
         <!-- -->
@@ -98,6 +99,9 @@
         <action name="registrarNuevoTrabajador" class="com.shoppingcenter.controllers.ControllerRegistrarTrabajador" method="registrarNuevoTrabajador">
             <result name="succes_gestionar_trabajadores">trabajador/gestionar_trabajadores.jsp</result>
             <result name="failure">trabajador/registrar_trabajador.jsp</result>
+        </action>
+        <action name="trabajadorAlocal" class="com.shoppingcenter.controllers.ControllerIndexTrabajador" method="direccionarALocal">
+            <result name="succes_TrabajadorAlocal">localcentrocomercial/editar_localcentrocomercial.jsp</result>
         </action>
       
     </package>
