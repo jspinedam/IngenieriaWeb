@@ -6,6 +6,7 @@
 package com.shoppingcenter.entidades;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -30,13 +31,29 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "persona")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
+    @NamedQuery(name = "Persona.findByIdpersona", query = "SELECT p FROM Persona p WHERE p.idpersona = :idpersona"),
+    @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
+    @NamedQuery(name = "Persona.findByApellido", query = "SELECT p FROM Persona p WHERE p.apellido = :apellido"),
+    @NamedQuery(name = "Persona.findByCorreo", query = "SELECT p FROM Persona p WHERE p.correo = :correo"),
+    @NamedQuery(name = "Persona.findByGenero", query = "SELECT p FROM Persona p WHERE p.genero = :genero"),
+    @NamedQuery(name = "Persona.findByTipodocumento", query = "SELECT p FROM Persona p WHERE p.tipodocumento = :tipodocumento"),
+    @NamedQuery(name = "Persona.findByNumerodocumento", query = "SELECT p FROM Persona p WHERE p.numerodocumento = :numerodocumento"),
+    @NamedQuery(name = "Persona.findByNombreusuario", query = "SELECT p FROM Persona p WHERE p.nombreusuario = :nombreusuario"),
+    @NamedQuery(name = "Persona.findByPasswordusuario", query = "SELECT p FROM Persona p WHERE p.passwordusuario = :passwordusuario"),
+    @NamedQuery(name = "Persona.findByEstadoactivo", query = "SELECT p FROM Persona p WHERE p.estadoactivo = :estadoactivo"),
+    @NamedQuery(name = "Persona.findByTelefonocontacto", query = "SELECT p FROM Persona p WHERE p.telefonocontacto = :telefonocontacto")})
 public class Persona implements Serializable {
+    @Size(max = 1)
+    @Column(name = "tipousuario")
+    private String tipousuario;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idpersona")
-    private Long idpersona;
+    private BigInteger idpersona;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -94,11 +111,11 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(Long idpersona) {
+    public Persona(BigInteger idpersona) {
         this.idpersona = idpersona;
     }
 
-    public Persona(Long idpersona, String nombre, String apellido, String correo, String genero, String tipodocumento, String numerodocumento, String nombreusuario, String passwordusuario, boolean estadoactivo) {
+    public Persona(BigInteger idpersona, String nombre, String apellido, String correo, String genero, String tipodocumento, String numerodocumento, String nombreusuario, String passwordusuario, boolean estadoactivo) {
         this.idpersona = idpersona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -111,11 +128,11 @@ public class Persona implements Serializable {
         this.estadoactivo = estadoactivo;
     }
 
-    public Long getIdpersona() {
+    public BigInteger getIdpersona() {
         return idpersona;
     }
 
-    public void setIdpersona(Long idpersona) {
+    public void setIdpersona(BigInteger idpersona) {
         this.idpersona = idpersona;
     }
 
@@ -249,6 +266,14 @@ public class Persona implements Serializable {
     @Override
     public String toString() {
         return "com.shoppingcenter.entidades.Persona[ idpersona=" + idpersona + " ]";
+    }
+
+    public String getTipousuario() {
+        return tipousuario;
+    }
+
+    public void setTipousuario(String tipousuario) {
+        this.tipousuario = tipousuario;
     }
     
 }
