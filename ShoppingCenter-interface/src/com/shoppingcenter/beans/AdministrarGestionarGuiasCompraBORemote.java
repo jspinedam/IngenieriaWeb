@@ -20,6 +20,10 @@ import javax.ejb.Remote;
 @Remote
 public interface AdministrarGestionarGuiasCompraBORemote {
 
+    public List<GuiaCompraProducto> consultarGuiasCompraProductoRegistradas();
+
+    public List<GuiaCompraLocal> consultarGuiasCompraLocalRegistradas();
+
     public List<GuiaCompraLocal> consultarGuiasCompraLocalPorParametro(Map<String, String> filtros);
 
     public List<GuiaCompraProducto> consultarGuiasCompraProductoPorParametro(Map<String, String> filtros);

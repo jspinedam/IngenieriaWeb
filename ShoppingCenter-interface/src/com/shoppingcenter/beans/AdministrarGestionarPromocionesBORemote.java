@@ -17,9 +17,16 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface AdministrarGestionarPromocionesBORemote {
+
+    public List<Promocion> consultarPromocionesRegistradas();
+
     public List<Promocion> consultarPromocionesPorParametro(Map<String, String> filtros);
-    public Promocion obtenerPromocionPorID(BigInteger idPromocion) ;
+
+    public Promocion obtenerPromocionPorID(BigInteger idPromocion);
+
     public void actualizarInformacionPromocion(Promocion promocion);
+
     public void almacenarNuevoPromocionEnSistema(Promocion promocionNuevo);
-    public Promocion obtenerLocalPorCodigo(String codigo) ;
+
+    public Promocion obtenerLocalPorCodigo(String codigo);
 }

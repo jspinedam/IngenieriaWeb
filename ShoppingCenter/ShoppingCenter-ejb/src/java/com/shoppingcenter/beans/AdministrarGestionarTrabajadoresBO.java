@@ -53,6 +53,17 @@ public class AdministrarGestionarTrabajadoresBO implements AdministrarGestionarT
             return null;
         }
     }
+    
+    @Override
+    public List<Trabajador> consultarTrabajadoresRegistrados() {
+        try {
+            List<Trabajador> lista = trabajadorFacade.buscarTrabajadoresRegistrados();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Error AdministrarGestionarTrabajadoresBO consultarTrabajadoresRegistrados : " + e.toString());
+            return null;
+        }
+    }
 
     @Override
     public Trabajador obtenerTrabajadorPorID(BigInteger idTrabajador) {

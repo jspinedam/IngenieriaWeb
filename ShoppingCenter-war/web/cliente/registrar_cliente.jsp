@@ -179,7 +179,6 @@
                 </div>
                 <div class="row col-md-12">
                     <div class="col-md-11">
-
                     </div>
                     <div class="col-md-1">
                         <form action="atrasInicioCliente">

@@ -84,7 +84,33 @@ public class ControllerPaginaInicio extends ActionSupport implements SessionAwar
     public String registrarLocal() {
         return "success_registrar_localescentrocomercial";
     }
+
     //--//--//
+
+    public String consultarPromociones() {
+        return "success_gestionar_promociones";
+    }
+    
+    //--//--//
+
+    public String registrarPromocion() {
+        return "success_registrar_promocion";
+    }
+    //--//--//
+    
+        //--//--//
+
+    public String consultarGuiaCompraLocal() {
+        return "success_gestionar_guiascompralocal";
+    }
+
+    
+        //--//--//
+
+    public String consultarGuiaCompraProducto() {
+        return "success_gestionar_guiascompraproducto";
+    }
+
 
     @Override
     public void setSession(Map<String, Object> session) {

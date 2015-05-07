@@ -21,6 +21,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class AdministradorFacade extends AbstractFacade<Administrador> {
+
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -32,6 +33,7 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
     public AdministradorFacade() {
         super(Administrador.class);
     }
+
     public Administrador buscarAdministradorPorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -56,6 +58,19 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
             return registro;
         } catch (Exception e) {
             System.out.println("Error buscarAdministradorPorIDPersona AdministradorDAO : " + e.toString());
+            return null;
+        }
+    }
+
+    public List<Administrador> buscarAdministradoresRegistrados() {
+        try {
+            em.clear();
+            Query query = em.createQuery("SELECT p FROM Administrador p");
+            query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            List<Administrador> registros = query.getResultList();
+            return registros;
+        } catch (Exception e) {
+            System.out.println("Error buscarAdministradoresRegistrados AdministradorDAO : " + e.toString());
             return null;
         }
     }

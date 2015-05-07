@@ -54,6 +54,20 @@
             <result name="success_registrar_localescentrocomercial">localcentrocomercial/registrar_localcentrocomercial.jsp</result>
         </action>
         <!-- -->
+        <action name="consultarPromociones" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarPromociones">
+            <result name="success_gestionar_promociones">promocion/gestionar_promociones.jsp</result>
+        </action>
+        <action name="registrarPromocion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="registrarPromocion">
+            <result name="success_registrar_promocion">promocion/registrar_promocion.jsp</result>
+        </action>
+        <!-- -->
+        <!-- -->
+        <action name="consultarGuiaCompraLocal" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarGuiaCompraLocal">
+            <result name="success_gestionar_guiascompralocal">guiacompra/gestionar_guiascompralocal.jsp</result>
+        </action>
+        <action name="consultarGuiaCompraProducto" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarGuiaCompraProducto">
+            <result name="success_gestionar_guiascompraproducto">guiacompra/gestionar_guiascompraproducto.jsp</result>
+        </action>
         
         <!-- -->
         <!-- Consultas de Usuarios -->

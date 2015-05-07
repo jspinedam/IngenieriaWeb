@@ -24,6 +24,17 @@ public class AdministrarGestionarPromocionesBO implements AdministrarGestionarPr
     private PromocionFacade promocionFacade;
 
     @Override
+    public List<Promocion> consultarPromocionesRegistradas() {
+        try {
+            List<Promocion> lista = promocionFacade.findAll();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Error AdministrarGestionarPromocionesBO consultarPromocionesRegistradas : " + e.toString());
+            return null;
+        }
+    }
+
+    @Override
     public List<Promocion> consultarPromocionesPorParametro(Map<String, String> filtros) {
         try {
             List<Promocion> lista = promocionFacade.buscarPromocionesPorFiltrado(filtros);

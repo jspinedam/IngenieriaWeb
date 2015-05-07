@@ -29,6 +29,17 @@ public class AdministrarGestionarClientesBO implements AdministrarGestionarClien
     private PersonaFacade personaFacade;
 
     @Override
+    public List<Cliente> consultarClientesRegistrados() {
+        try {
+            List<Cliente> registros = clienteFacade.buscarClientesRegistrados();
+            return registros;
+        } catch (Exception e) {
+            System.out.println("Error AdministrarGestionarClientesBO consultarClientesPorParametro : " + e.toString());
+            return null;
+        }
+    }
+
+    @Override
     public List<Cliente> consultarClientesPorParametro(Map<String, String> filtros) {
         try {
             List<Cliente> lista = clienteFacade.buscarClientesPorFiltrado(filtros);

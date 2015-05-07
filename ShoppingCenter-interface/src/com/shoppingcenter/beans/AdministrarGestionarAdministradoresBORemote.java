@@ -19,6 +19,8 @@ import javax.ejb.Remote;
 @Remote
 public interface AdministrarGestionarAdministradoresBORemote {
 
+    public List<Administrador> consultarAdministradoresRegistrados();
+
     public List<Administrador> consultarAdministradoresPorParametro(Map<String, String> filtros);
 
     public Administrador obtenerAdministradorPorID(BigInteger idAdministrador);

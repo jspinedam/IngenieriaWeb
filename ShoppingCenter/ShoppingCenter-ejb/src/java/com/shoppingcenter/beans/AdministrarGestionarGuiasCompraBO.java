@@ -32,6 +32,28 @@ public class AdministrarGestionarGuiasCompraBO implements AdministrarGestionarGu
     private GuiaCompraFacade guiaCompraFacade;
 
     @Override
+    public List<GuiaCompraLocal> consultarGuiasCompraLocalRegistradas() {
+        try {
+            List<GuiaCompraLocal> registro = guiaCompraLocalFacade.findAll();
+            return registro;
+        } catch (Exception e) {
+            System.out.println("Error AdministrarGestionarGuiasCompraBO consultarGuiasCompraLocalRegistradas : " + e.toString());
+            return null;
+        }
+    }
+    
+    @Override
+    public List<GuiaCompraProducto> consultarGuiasCompraProductoRegistradas() {
+        try {
+            List<GuiaCompraProducto> registro = guiaCompraProductoFacade.findAll();
+            return registro;
+        } catch (Exception e) {
+            System.out.println("Error AdministrarGestionarGuiasCompraBO consultarGuiasCompraProductoRegistradas : " + e.toString());
+            return null;
+        }
+    }
+
+    @Override
     public List<GuiaCompraLocal> consultarGuiasCompraLocalPorParametro(Map<String, String> filtros) {
         try {
             List<GuiaCompraLocal> lista = guiaCompraLocalFacade.buscarGuiasCompraLocalesPorFiltrado(filtros);

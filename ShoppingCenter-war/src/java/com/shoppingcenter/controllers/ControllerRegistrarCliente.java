@@ -188,17 +188,6 @@ public class ControllerRegistrarCliente implements Serializable {
         try {
             //RequestContext context = RequestContext.getCurrentInstance();
             System.out.println("LLegue a ControllerRegistrarCliente registrarNuevoCliente");
-            System.out.println("inputApellido " + inputApellido);
-            System.out.println("inputCorreo " + inputCorreo);
-            System.out.println("inputGenero " + inputGenero);
-            System.out.println("inputNombre " + inputNombre);
-            System.out.println("inputUsuario " + inputUsuario);
-            System.out.println("inputID " + inputID);
-            System.out.println("inputContrasenia " + inputContrasenia);
-            System.out.println("inputTelefono " + inputTelefono);
-            System.out.println("inputTipoDocumento " + inputTipoDocumento);
-            System.out.println("inputDireccion " + inputDireccion);
-
             if (validarNombreApellidoCliente() == true) {
                 System.out.println("1");
                 if (validarCorreoCliente() == true) {
@@ -264,17 +253,6 @@ public class ControllerRegistrarCliente implements Serializable {
             nuevaPersona.setTipodocumento(inputTipoDocumento);
             Cliente nuevoCliente = new Cliente();
             nuevoCliente.setDireccionentrega(inputDireccion);
-            System.out.println("Apellido : " + nuevaPersona.getApellido());
-            System.out.println("Correo : " + nuevaPersona.getCorreo());
-            System.out.println("Estado : " + nuevaPersona.getEstadoactivo());
-            System.out.println("Genero : " + nuevaPersona.getGenero());
-            System.out.println("Nombre : " + nuevaPersona.getNombre());
-            System.out.println("Usuario : " + nuevaPersona.getNombreusuario());
-            System.out.println("Tipo Documento : " + nuevaPersona.getTipodocumento());
-            System.out.println("Numero Documento : " + nuevaPersona.getNumerodocumento());
-            System.out.println("Password : " + nuevaPersona.getPasswordusuario());
-            System.out.println("Telefono : " + nuevaPersona.getTelefonocontacto());
-            System.out.println("Cliente Direccion : " + nuevoCliente.getDireccionentrega());
             administrarGestionarClientesBO.almacenarNuevoClienteEnSistema(nuevaPersona, nuevoCliente);
         } catch (Exception e) {
             System.out.println("Error ControllerRegistrarCliente almacenarNuevoClienteEnSistema : " + e.toString());

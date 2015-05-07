@@ -22,6 +22,18 @@ public class AdministrarGestionarLocalesCentroComercialBO implements Administrar
 
     @EJB
     private LocalCentroComercialFacade localCentroComercialFacade;
+
+    @Override
+    public List<LocalCentroComercial> consultarLocalesCentroComercialRegistrados() {
+        try {
+            List<LocalCentroComercial> lista = localCentroComercialFacade.buscarLocalesCentroComercialRegistrados();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Error AdministrarGestionarLocalesCentroComercialBO consultarLocalesCentroComercialRegistrados : " + e.toString());
+            return null;
+        }
+    }
+    
     @Override
     public List<LocalCentroComercial> consultarLocalesCentroComercialPorParametro(Map<String, String> filtros) {
         try {
@@ -32,6 +44,7 @@ public class AdministrarGestionarLocalesCentroComercialBO implements Administrar
             return null;
         }
     }
+
     @Override
     public LocalCentroComercial obtenerLocalCentroComercialPorID(BigInteger idLocalCentroComercial) {
         try {

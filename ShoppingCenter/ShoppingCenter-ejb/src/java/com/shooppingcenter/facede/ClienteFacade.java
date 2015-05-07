@@ -21,6 +21,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class ClienteFacade extends AbstractFacade<Cliente> {
+
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -32,7 +33,8 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
     public ClienteFacade() {
         super(Cliente.class);
     }
-     public Cliente buscarClientePorID(BigInteger idRegistro) {
+
+    public Cliente buscarClientePorID(BigInteger idRegistro) {
         try {
             em.clear();
             Query query = em.createQuery("SELECT p FROM Cliente p WHERE p.idcliente=:idRegistro");
@@ -56,6 +58,19 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
             return registro;
         } catch (Exception e) {
             System.out.println("Error buscarClientePorIDPersona ClienteDAO : " + e.toString());
+            return null;
+        }
+    }
+
+    public List<Cliente> buscarClientesRegistrados() {
+        try {
+            em.clear();
+            Query query = em.createQuery("SELECT p FROM Cliente p");
+            query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            List<Cliente> registro = query.getResultList();
+            return registro;
+        } catch (Exception e) {
+            System.out.println("Error buscarClientesRegistrados ClienteDAO : " + e.toString());
             return null;
         }
     }

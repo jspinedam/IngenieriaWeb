@@ -18,6 +18,8 @@ import javax.ejb.Remote;
 @Remote
 public interface AdministrarGestionarLocalesCentroComercialBORemote {
 
+    public List<LocalCentroComercial> consultarLocalesCentroComercialRegistrados();
+
     public List<LocalCentroComercial> consultarLocalesCentroComercialPorParametro(Map<String, String> filtros);
 
     public LocalCentroComercial obtenerLocalCentroComercialPorID(BigInteger idLocalCentroComercial);

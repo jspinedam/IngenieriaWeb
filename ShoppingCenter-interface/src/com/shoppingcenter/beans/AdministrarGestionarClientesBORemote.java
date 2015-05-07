@@ -19,6 +19,8 @@ import javax.ejb.Remote;
 @Remote
 public interface AdministrarGestionarClientesBORemote {
 
+    public List<Cliente> consultarClientesRegistrados();
+
     public List<Cliente> consultarClientesPorParametro(Map<String, String> filtros);
 
     public Cliente obtenerClientePorID(BigInteger idCliente);

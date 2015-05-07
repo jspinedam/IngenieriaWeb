@@ -40,7 +40,7 @@
                                 <a class="navbar-brand topnav" href="#">E-Shopping Center</a>    
                             </a>
                             <p class="navbar-text pull-left ">
-                                <jsp:useBean id="sesion" class="com.eshopping.controllers.ControllerPaginaInicio" scope="page"/>
+                                <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
                                 Conectado como: <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
                             </p>
                         </div>

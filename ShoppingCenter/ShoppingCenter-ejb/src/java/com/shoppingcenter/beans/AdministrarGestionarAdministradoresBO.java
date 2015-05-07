@@ -27,6 +27,17 @@ public class AdministrarGestionarAdministradoresBO implements AdministrarGestion
     private AdministradorFacade administradorFacade;
     @EJB
     private PersonaFacade personaFacade;
+    
+    @Override
+    public List<Administrador> consultarAdministradoresRegistrados(){
+        try {
+            List<Administrador> lista = administradorFacade.buscarAdministradoresRegistrados();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Error AdministrarGestionarAdministradoresBO consultarAdministradoresRegistrados : " + e.toString());
+            return null;
+        }
+    }
 
     @Override
     public List<Administrador> consultarAdministradoresPorParametro(Map<String, String> filtros) {

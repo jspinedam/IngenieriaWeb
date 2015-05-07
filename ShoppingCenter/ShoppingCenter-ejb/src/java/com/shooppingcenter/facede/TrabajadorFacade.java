@@ -62,6 +62,19 @@ public class TrabajadorFacade extends AbstractFacade<Trabajador> {
         }
     }
 
+    public List<Trabajador> buscarTrabajadoresRegistrados() {
+        try {
+            em.clear();
+            Query query = em.createQuery("SELECT p FROM Trabajador p ");
+            query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            List<Trabajador> registro = query.getResultList();
+            return registro;
+        } catch (Exception e) {
+            System.out.println("Error buscarTrabajadoresRegistrados TrabajadorDAO : " + e.toString());
+            return null;
+        }
+    }
+
     public List<Trabajador> buscarTrabajadoresPorFiltrado(Map<String, String> filters) {
         try {
             final String alias = "a";

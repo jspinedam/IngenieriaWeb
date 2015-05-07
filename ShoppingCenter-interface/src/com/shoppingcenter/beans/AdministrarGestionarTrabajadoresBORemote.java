@@ -20,6 +20,8 @@ import javax.ejb.Remote;
 @Remote
 public interface AdministrarGestionarTrabajadoresBORemote {
 
+    public List<Trabajador> consultarTrabajadoresRegistrados();
+
     public List<LocalCentroComercial> consultarLocalesRegistrados();
 
     public List<Trabajador> consultarTrabajadoresPorParametro(Map<String, String> filtros);

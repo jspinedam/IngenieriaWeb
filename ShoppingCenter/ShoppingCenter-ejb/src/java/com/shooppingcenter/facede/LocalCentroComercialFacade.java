@@ -21,6 +21,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class LocalCentroComercialFacade extends AbstractFacade<LocalCentroComercial> {
+
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -32,7 +33,8 @@ public class LocalCentroComercialFacade extends AbstractFacade<LocalCentroComerc
     public LocalCentroComercialFacade() {
         super(LocalCentroComercial.class);
     }
-        public LocalCentroComercial buscarLocalCentroComercialPorID(BigInteger idRegistro) {
+
+    public LocalCentroComercial buscarLocalCentroComercialPorID(BigInteger idRegistro) {
         try {
             em.clear();
             Query query = em.createQuery("SELECT p FROM LocalCentroComercial p WHERE p.idlocalcentrocomercial=:idRegistro");
@@ -56,6 +58,19 @@ public class LocalCentroComercialFacade extends AbstractFacade<LocalCentroComerc
             return registro;
         } catch (Exception e) {
             System.out.println("Error buscarLocalCentroComercialPorNumeroLocal LocalCentroComercialDAO : " + e.toString());
+            return null;
+        }
+    }
+
+    public List<LocalCentroComercial> buscarLocalesCentroComercialRegistrados() {
+        try {
+            em.clear();
+            Query query = em.createQuery("SELECT p FROM LocalCentroComercial p ");
+            query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            List<LocalCentroComercial> registro = query.getResultList();
+            return registro;
+        } catch (Exception e) {
+            System.out.println("Error buscarLocalesCentroComercialRegistrados LocalCentroComercialDAO : " + e.toString());
             return null;
         }
     }
