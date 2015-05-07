@@ -29,6 +29,7 @@
         </action>
         <action name="registrarCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="registrarCliente">
             <result name="success_registrar_cliente">cliente/registrar_cliente.jsp</result>
+            <result name="failure">index.jsp</result>
             <!--
             CAMBIO success_inicio_administrador por success_registrar_cliente
             -->

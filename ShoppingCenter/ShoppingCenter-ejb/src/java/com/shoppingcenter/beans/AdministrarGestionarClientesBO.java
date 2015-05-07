@@ -11,8 +11,11 @@ import com.shoppingcenter.entidades.Cliente;
 import com.shoppingcenter.entidades.Persona;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
@@ -73,24 +76,54 @@ public class AdministrarGestionarClientesBO implements AdministrarGestionarClien
 
     @Override
     public void almacenarNuevoClienteEnSistema(Persona personaNuevo, Cliente clienteNuevo) {
+        //try {
+        System.err.println("AdministrarGestionarClienteBO almacenarNuevoCLienteEnSistema");
+        System.out.println("almacenarNuevoClienteEnSistema Apellido : " + personaNuevo.getApellido());
+        System.out.println("almacenarNuevoClienteEnSistema Correo : " + personaNuevo.getCorreo());
+        System.out.println("almacenarNuevoClienteEnSistema Estado : " + personaNuevo.getEstadoactivo());
+        System.out.println("almacenarNuevoClienteEnSistema Genero : " + personaNuevo.getGenero());
+        System.out.println("almacenarNuevoClienteEnSistema Nombre : " + personaNuevo.getNombre());
+        System.out.println("almacenarNuevoClienteEnSistema Usuario : " + personaNuevo.getNombreusuario());
+        System.out.println("almacenarNuevoClienteEnSistema Tipo Documento : " + personaNuevo.getTipodocumento());
+        System.out.println("almacenarNuevoClienteEnSistema Numero Documento : " + personaNuevo.getNumerodocumento());
+        System.out.println("almacenarNuevoClienteEnSistema Password : " + personaNuevo.getPasswordusuario());
+        System.out.println("almacenarNuevoClienteEnSistema Telefono : " + personaNuevo.getTelefonocontacto());
+        System.out.println("almacenarNuevoClienteEnSistema Cliente Direccion : " + clienteNuevo.getDireccionentrega());
+        System.out.println("almacenarNuevoClienteEnSistema Cliente Persona : " + clienteNuevo.getPersona().getNombre());
+        String original = personaNuevo.getPasswordusuario();
+        MessageDigest md = null;
         try {
-            System.err.println("AdministrarGestionarClienteBO almacenarNuevoCLienteEnSistema");
-            String original = personaNuevo.getPasswordusuario();
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(original.getBytes());
-            byte[] digest = md.digest();
-            StringBuffer sb = new StringBuffer();
-            for (byte b : digest) {
-                sb.append(String.format("%02x", b & 0xff));
-            }
-            personaNuevo.setPasswordusuario(sb.toString());
-            personaFacade.create(personaNuevo);
-            Persona personaRegistrada = personaFacade.obtenerUltimaPersonaRegistrada();
-            clienteNuevo.setPersona(personaRegistrada);
-            clienteFacade.create(clienteNuevo);
-        } catch (Exception e) {
-            System.out.println("Error AdministrarGestionarClientesBO almacenarNuevoClienteEnSistema : " + e.toString());
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AdministrarGestionarClientesBO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        md.update(original.getBytes());
+        byte[] digest = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for (byte b : digest) {
+            sb.append(String.format("%02x", b & 0xff));
+        }
+        personaNuevo.setPasswordusuario(sb.toString());
+        System.out.println("almacenarNuevoClienteEnSistema sb : " + sb.toString());
+        /*System.out.println("almacenarNuevoClienteEnSistema Apellido : " + personaNuevo.getApellido());
+         System.out.println("almacenarNuevoClienteEnSistema Correo : " + personaNuevo.getCorreo());
+         System.out.println("almacenarNuevoClienteEnSistema Estado : " + personaNuevo.getEstadoactivo());
+         System.out.println("almacenarNuevoClienteEnSistema Genero : " + personaNuevo.getGenero());
+         System.out.println("almacenarNuevoClienteEnSistema Nombre : " + personaNuevo.getNombre());
+         System.out.println("almacenarNuevoClienteEnSistema Usuario : " + personaNuevo.getNombreusuario());
+         System.out.println("almacenarNuevoClienteEnSistema Tipo Documento : " + personaNuevo.getTipodocumento());
+         System.out.println("almacenarNuevoClienteEnSistema Numero Documento : " + personaNuevo.getNumerodocumento());
+         System.out.println("almacenarNuevoClienteEnSistema Password : " + personaNuevo.getPasswordusuario());
+         System.out.println("almacenarNuevoClienteEnSistema Telefono : " + personaNuevo.getTelefonocontacto());
+         System.out.println("almacenarNuevoClienteEnSistema Cliente Direccion : " + clienteNuevo.getDireccionentrega());
+         System.out.println("almacenarNuevoClienteEnSistema Cliente Persona : " + clienteNuevo.getPersona().getNombre());*/
+        personaFacade.create(personaNuevo);
+        Persona personaRegistrada = personaFacade.obtenerUltimaPersonaRegistrada();
+        clienteNuevo.setPersona(personaRegistrada);
+        clienteFacade.create(clienteNuevo);
+        /*} catch (Exception e) {
+         System.out.println("Error AdministrarGestionarClientesBO almacenarNuevoClienteEnSistema : " + e.toString());
+         }*/
     }
 
     @Override

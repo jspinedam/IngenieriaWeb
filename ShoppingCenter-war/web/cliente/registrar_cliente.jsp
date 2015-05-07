@@ -120,11 +120,11 @@
                                     </div>
                                     <div class="form-group">
                                         <strong>
-                                            <label for="inputDireccion">
+                                            <label for="inputDireccionEntrega">
                                                 Dirección Entrega*
                                             </label> 
                                         </strong>
-                                        <input type="text" maxlength="60" name="inputDireccion" required="true" class="form-control"/>
+                                        <input type="text" maxlength="60" name="inputDireccionEntrega" required="true" class="form-control"/>
                                     </div>
                                     <div class="form-group">
                                         <strong>

@@ -57,7 +57,7 @@ public final class Utilidades {
         respuesta = matcher.matches();
         return respuesta;
     }
-    
+
     /**
      * Metodo que valida que un caracter string este conformado unicamente por
      * caracteres
@@ -66,9 +66,9 @@ public final class Utilidades {
      * @return true-Palabra correcta / false-Palabra incorrecta
      */
     public static boolean validarIdentificacionesDirecciones(String str) {
-        System.out.println("Utilidades validarIdentificacionesDirecciones "+str);
+        System.out.println("Utilidades validarIdentificacionesDirecciones " + str);
         boolean respuesta = false;
-        Pattern pattern = Pattern.compile("([a-z]|[A-Z]|[0-9])+");
+        Pattern pattern = Pattern.compile("([a-z]|[A-Z]|[0-9]|\\s)+");
         Matcher matcher = pattern.matcher(str);
         respuesta = matcher.matches();
         return respuesta;
