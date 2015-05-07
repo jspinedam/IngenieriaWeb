@@ -27,7 +27,7 @@ public class ControllerRegistrarCliente implements Serializable {
 
     private String inputNombre, inputApellido, inputCorreo, inputID, inputGenero, inputTipoDocumento;
     private String inputUsuario, inputContrasenia, inputContraseniaConfirma, inputTelefono;
-    private String inputDireccion;
+    private String inputDireccionEntrega;
 
     public void ControllerRegistrarCliente() {
     }
@@ -39,7 +39,7 @@ public class ControllerRegistrarCliente implements Serializable {
         inputApellido = null;
         inputID = null;
         inputContrasenia = null;
-        inputDireccion = null;
+        inputDireccionEntrega = null;
         inputTelefono = null;
         inputContraseniaConfirma = null;
         inputUsuario = null;
@@ -125,16 +125,16 @@ public class ControllerRegistrarCliente implements Serializable {
      */
     public boolean validarDireccionCliente() {
         boolean retorno = true;
-        System.out.println("ControllerRegistrarCliente validarDireccionCliente InputDireccion " + inputDireccion);
-        if (Utilidades.validarNulo(inputDireccion)) {
+        System.out.println("ControllerRegistrarCliente validarDireccionCliente InputDireccion " + inputDireccionEntrega);
+        if (Utilidades.validarNulo(inputDireccionEntrega)) {
             System.out.println("ControllerRegistrarCliente validarDireccionCliente 1 ");
-            if (Utilidades.validarIdentificacionesDirecciones(inputDireccion)) {
+            if (Utilidades.validarIdentificacionesDirecciones(inputDireccionEntrega)) {
                 System.out.println("ControllerRegistrarCliente validarDireccionCliente 2 ");
             } else {
                 retorno = false;
             }
-            System.out.println("ControllerRegistrarCliente validarDireccionCliente retorno " + retorno);
         }
+        System.out.println("ControllerRegistrarCliente validarDireccionCliente retorno : " + retorno);
         return retorno;
     }
 
@@ -149,11 +149,11 @@ public class ControllerRegistrarCliente implements Serializable {
         if (Utilidades.validarNulo(inputUsuario) && Utilidades.validarNulo(inputContrasenia)
                 && Utilidades.validarNulo(inputContraseniaConfirma)) {
             if (inputContrasenia.equals(inputContraseniaConfirma)) {
+                Boolean usuarioYaRegitrado = administrarGestionarClientesBO.validarUsuarioNuevaPersona(inputUsuario);
+                if (usuarioYaRegitrado == true) {
+                    retorno = false;
+                }
             } else {
-                retorno = false;
-            }
-            Boolean usuarioYaRegitrado = administrarGestionarClientesBO.validarUsuarioNuevaPersona(inputUsuario);
-            if (usuarioYaRegitrado == true) {
                 retorno = false;
             }
         } else {
@@ -188,25 +188,10 @@ public class ControllerRegistrarCliente implements Serializable {
         try {
             //RequestContext context = RequestContext.getCurrentInstance();
             System.out.println("LLegue a ControllerRegistrarCliente registrarNuevoCliente");
-            System.out.println("inputApellido " + inputApellido);
-            System.out.println("inputCorreo " + inputCorreo);
-            System.out.println("inputGenero " + inputGenero);
-            System.out.println("inputNombre " + inputNombre);
-            System.out.println("inputUsuario " + inputUsuario);
-            System.out.println("inputID " + inputID);
-            System.out.println("inputContrasenia " + inputContrasenia);
-            System.out.println("inputTelefono " + inputTelefono);
-            System.out.println("inputTipoDocumento " + inputTipoDocumento);
-            System.out.println("inputDireccion " + inputDireccion);
-
             if (validarNombreApellidoCliente() == true) {
-                System.out.println("1");
                 if (validarCorreoCliente() == true) {
-                    System.out.println("2");
                     if (validarIdentificacionCliente() == true) {
-                        System.out.println("3");
                         if (validarDatosNumericosCliente() == true) {
-                            System.out.println("4");
                             if (validarDireccionCliente() == true) {
                                 System.out.println("5");
                                 if (validarDatosUserPassCliente() == true) {
@@ -225,6 +210,7 @@ public class ControllerRegistrarCliente implements Serializable {
                                 }
                             } else {
                                 //            context.execute("errorDireccionCliente.show()");
+                                System.out.println("error en 4");
                                 mensajeRetorno = "failure";
                             }
                         } else {
@@ -263,18 +249,7 @@ public class ControllerRegistrarCliente implements Serializable {
             nuevaPersona.setTelefonocontacto(inputTelefono);
             nuevaPersona.setTipodocumento(inputTipoDocumento);
             Cliente nuevoCliente = new Cliente();
-            nuevoCliente.setDireccionentrega(inputDireccion);
-            System.out.println("Apellido : " + nuevaPersona.getApellido());
-            System.out.println("Correo : " + nuevaPersona.getCorreo());
-            System.out.println("Estado : " + nuevaPersona.getEstadoactivo());
-            System.out.println("Genero : " + nuevaPersona.getGenero());
-            System.out.println("Nombre : " + nuevaPersona.getNombre());
-            System.out.println("Usuario : " + nuevaPersona.getNombreusuario());
-            System.out.println("Tipo Documento : " + nuevaPersona.getTipodocumento());
-            System.out.println("Numero Documento : " + nuevaPersona.getNumerodocumento());
-            System.out.println("Password : " + nuevaPersona.getPasswordusuario());
-            System.out.println("Telefono : " + nuevaPersona.getTelefonocontacto());
-            System.out.println("Cliente Direccion : " + nuevoCliente.getDireccionentrega());
+            nuevoCliente.setDireccionentrega(inputDireccionEntrega);
             administrarGestionarClientesBO.almacenarNuevoClienteEnSistema(nuevaPersona, nuevoCliente);
         } catch (Exception e) {
             System.out.println("Error ControllerRegistrarCliente almacenarNuevoClienteEnSistema : " + e.toString());
@@ -356,6 +331,14 @@ public class ControllerRegistrarCliente implements Serializable {
         this.inputContrasenia = inputContrasenia;
     }
 
+    public String getInputDireccionEntrega() {
+        return inputDireccionEntrega;
+    }
+
+    public void setInputDireccionEntrega(String inputDireccionEntrega) {
+        this.inputDireccionEntrega = inputDireccionEntrega;
+    }
+
     public String getInputContraseniaConfirma() {
         return inputContraseniaConfirma;
     }
@@ -370,14 +353,6 @@ public class ControllerRegistrarCliente implements Serializable {
 
     public void setInputTelefono(String inputTelefono) {
         this.inputTelefono = inputTelefono;
-    }
-
-    public String getInputDireccion() {
-        return inputDireccion;
-    }
-
-    public void setInputDireccion(String inputDireccion) {
-        this.inputDireccion = inputDireccion;
     }
 
 }
