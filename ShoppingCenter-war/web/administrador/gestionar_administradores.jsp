@@ -6,7 +6,6 @@
 
 
 <%@page import="java.util.HashMap"%>
-<%@page import="com.eshopping.utilidades.Utilidades"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -50,7 +49,7 @@
                                 <a class="navbar-brand topnav" href="#">E-Shopping Center</a>    
                             </a>
                             <p class="navbar-text pull-left ">
-                                <jsp:useBean id="sesion" class="com.eshopping.controllers.ControllerPaginaInicio" scope="page"/>
+                                <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
                                 Conectado como: <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
                             </p>
                         </div>
@@ -189,10 +188,10 @@
                                     <th>Apellido</th>
                                     <th>Correo</th>
                                 </tr>
-                                <%@page import="com.eshopping.entidades.Administrador"%>
+                                <%@page import="com.shoppingcenter.entidades.Administrador"%>
                                 <%@page import="java.util.List"%>
                                 <%@page import="java.util.Map"%>
-                                <jsp:useBean id="admiController" class="com.eshopping.controllers.ControllerAdministrarAdministradores" />
+                                <jsp:useBean id="admiController" class="com.shoppingcenter.controllers.ControllerAdministrarAdministradores" />
                                 <%
                                     String parametroNombre, parametroApellido, parametroDocumento, parametroTipoDocumento, parametroCorreo, parametroGenero, parametroUsuario;
                                     int parametroEstado = 1;

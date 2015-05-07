@@ -7,6 +7,7 @@ package com.shoppingcenter.controllers;
 
 import com.shoppingcenter.beans.AdministrarGestionarAdministradoresBORemote;
 import com.shoppingcenter.entidades.Administrador;
+import com.shoppingcenter.entidades.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -112,6 +113,12 @@ public class ControllerAdministrarAdministradores extends HttpServlet implements
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
+    }
+
+    public List<Administrador> buscarAdministradores(Map<String, String> filtrosR) {
+        filtros = filtrosR;
+        listaAdministradores = administrarGestionarAdministradoresBO.consultarAdministradoresPorParametro(filtrosR);
+        return listaAdministradores;
     }
 
     @Override
