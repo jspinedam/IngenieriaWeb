@@ -61,27 +61,29 @@
                             <table border=1 width="100%">
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Correo</th>
-                                    <th>N° Local</th>
-                                    <th>Telefono</th>
+                                    <th>Codigo</th>
+                                    <th>Producto Nombre</th>
+                                    <th>Producto Codigo</th>
+                                    <th>Fecha Limite</th>
                                 </tr>
-                                <%@page import="com.shoppingcenter.entidades.LocalCentroComercial"%>
+                                <%@page import="com.shoppingcenter.entidades.Promocion"%>
                                 <%@page import="java.util.List"%>
                                 <%@page import="java.util.Map"%>
-                                <jsp:useBean id="localController" class="com.shoppingcenter.controllers.ControllerAdministrarLocalesCentroComercial2" />
+                                <jsp:useBean id="promocionController" class="com.shoppingcenter.controllers.ControllerConsultarPromociones" />
                                 <%
-                                    List<LocalCentroComercial> listaLocalesCentroComercial = null;
-                                    listaLocalesCentroComercial = localController.getListaLocalesCentroComercial();
+                                    List<Promocion> listaPromociones = null;
+                                    listaPromociones = promocionController.getListaPromociones();
                                     for (int i = 0;
-                                            i < listaLocalesCentroComercial.size();
+                                            i < listaPromociones.size();
                                             i++) {
-                                        LocalCentroComercial emp = (LocalCentroComercial) listaLocalesCentroComercial.get(i);
+                                        Promocion emp = (Promocion) listaPromociones.get(i);
                                 %>
                                 <tr>
                                     <td><%=emp.getNombre()%></td>
-                                    <td><%=emp.getCorreo()%></td>
-                                    <td><%=emp.getNumerolocal()%></td>
-                                    <td><%=emp.getTelefono()%></td>
+                                    <td><%=emp.getCodigo()%></td>
+                                    <td><%=emp.getProducto().getNombre()%></td>
+                                    <td><%=emp.getProducto().getCodigo()%></td>
+                                    <td><%=emp.getFechalimite()%></td>
                                 </tr>
                                 <%
                                     }
@@ -93,14 +95,10 @@
             </div>
             <br></br>
             <div class="row">
-                <div class="col-md-1">
-                    <form action="registrarLocal">
-                        <input type="submit" value="Nuevo Local C.C." class="btn btn-success"/>
-                    </form>
-                </div>
+                <div class="col-md-1"></div>
                 <div class="col-md-10"></div>
                 <div class="col-md-1">
-                    <form action="atrasInicioAdministrador">
+                    <form action="atrasInicioCliente">
                         <input value="Atras" type="submit" class="btn btn-danger"/>
                     </form>  
                 </div>

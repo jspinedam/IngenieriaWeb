@@ -63,36 +63,42 @@
                 </div>
             </div>
         </div>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img alt="300x800" class="img-responsive img-rounded" src="http://lorempixel.com/600/200/business">
-                        <h1>Local</h1>
-                        <p>
-                            Cambia la información del establecimiento.
-                        </p>
-                        <form action="trabajadorAlocal" >
-                            <input type="submit" value="Entrar" />
-                        </form>
-                        <p></p>
-                    </div>
-                    <form>
+        <div class="row">
+            <br></br>
+            <br></br>
+        </div>
+        <div class="row col-md-12">
+            <div class="section">
+                <div class="container">
+                    <div class="row">
                         <div class="col-md-6">
-                            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                                 class="img-responsive">
-                            <h1>Productos</h1>
-                            <p></p>
-                            <p>Agrega, edita y elimina productos</p>
-                            <input type="submit" value="Entrar" />
+                            <img alt="300x800" class="img-responsive img-rounded" src="http://lorempixel.com/600/200/business">
+                            <h1>Local</h1>
+                            <p>
+                                Cambia la información del establecimiento.
+                            </p>
+                            <form action="trabajadorAlocal" >
+                                <input type="submit" value="Entrar" />
+                            </form>
                             <p></p>
                         </div>
-                    </form>
+                        <form>
+                            <div class="col-md-6">
+                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                                     class="img-responsive">
+                                <h1>Productos</h1>
+                                <p></p>
+                                <p>Agrega, edita y elimina productos</p>
+                                <input type="submit" value="Entrar" />
+                                <p></p>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
             </div>
         </div>
-                                 <!-- Footer -->
+        <!-- Footer -->
         <footer>
             <div class="container">
                 <div class="row">

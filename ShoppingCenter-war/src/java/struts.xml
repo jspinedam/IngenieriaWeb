@@ -24,6 +24,9 @@
         <action name="atrasInicioAdministrador" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="atrasInicioAdministrador">
             <result name="success_inicio_administrador">administrador/inicio_administrador.jsp</result>
         </action>
+        <action name="atrasInicioCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="atrasInicioCliente">
+            <result name="success_inicio_cliente">cliente/inicio_cliente.jsp</result>
+        </action>
         <!-- -->
         <action name="gestionarCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="gestionarCliente">
             <result name="success_gestionar_clientes">cliente/gestionar_clientes.jsp</result>
@@ -102,6 +105,18 @@
         </action>
         <action name="trabajadorAlocal" class="com.shoppingcenter.controllers.ControllerIndexTrabajador" method="direccionarALocal">
             <result name="succes_TrabajadorAlocal">localcentrocomercial/editar_localcentrocomercial.jsp</result>
+        </action>
+        <action name="consultarLocalCentroComercial" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarLocalCentroComercial">
+            <result name="success_consultar_localcentrocomercial">cliente/consultar_localescentrocomercial.jsp</result>
+        </action>
+        <action name="consultarPromocion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarPromocion">
+            <result name="success_consultar_promociones">cliente/consultar_promociones.jsp</result>
+        </action>
+        <action name="consultarGuiaCompraProductoCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarGuiaCompraProductoCliente">
+            <result name="success_consultar_guiascompraproductos">cliente/consultar_guiascomprasproductos.jsp</result>
+        </action>
+        <action name="consultarGuiaCompraLocalCliente" class="com.shoppingcenter.controllers.ControllerPaginaInicio" method="consultarGuiaCompraLocalCliente">
+            <result name="success_consultar_guiascompralocales">cliente/consultar_guiascompraslocales.jsp</result>
         </action>
       
     </package>

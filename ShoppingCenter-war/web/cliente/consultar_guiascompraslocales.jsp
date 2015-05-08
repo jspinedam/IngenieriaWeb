@@ -61,27 +61,32 @@
                             <table border=1 width="100%">
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Correo</th>
+                                    <th>Codigo</th>
+                                    <th>Caract. Comun</th>
+                                    <th>Nombre Local</th>
                                     <th>N° Local</th>
                                     <th>Telefono</th>
+
                                 </tr>
-                                <%@page import="com.shoppingcenter.entidades.LocalCentroComercial"%>
+                                <%@page import="com.shoppingcenter.entidades.GuiaCompraLocal"%>
                                 <%@page import="java.util.List"%>
                                 <%@page import="java.util.Map"%>
-                                <jsp:useBean id="localController" class="com.shoppingcenter.controllers.ControllerAdministrarLocalesCentroComercial2" />
+                                <jsp:useBean id="guiaController" class="com.shoppingcenter.controllers.ControllerConsultarGuiasCompraLocales" />
                                 <%
-                                    List<LocalCentroComercial> listaLocalesCentroComercial = null;
-                                    listaLocalesCentroComercial = localController.getListaLocalesCentroComercial();
+                                    List<GuiaCompraLocal> listaGuiasCompraLocal = null;
+                                    listaGuiasCompraLocal = guiaController.getListaGuiasCompraLocal();
                                     for (int i = 0;
-                                            i < listaLocalesCentroComercial.size();
+                                            i < listaGuiasCompraLocal.size();
                                             i++) {
-                                        LocalCentroComercial emp = (LocalCentroComercial) listaLocalesCentroComercial.get(i);
+                                        GuiaCompraLocal emp = (GuiaCompraLocal) listaGuiasCompraLocal.get(i);
                                 %>
                                 <tr>
-                                    <td><%=emp.getNombre()%></td>
-                                    <td><%=emp.getCorreo()%></td>
-                                    <td><%=emp.getNumerolocal()%></td>
-                                    <td><%=emp.getTelefono()%></td>
+                                    <td><%=emp.getGuiacompra().getNombre()%></td>
+                                    <td><%=emp.getGuiacompra().getCodigo()%></td>
+                                    <td><%=emp.getGuiacompra().getCaracteristicacomun()%></td>
+                                    <td><%=emp.getLocalcentrocomercial().getNombre()%></td>
+                                    <td><%=emp.getLocalcentrocomercial().getNumerolocal()%></td>
+                                    <td><%=emp.getLocalcentrocomercial().getTelefono()%></td>
                                 </tr>
                                 <%
                                     }
@@ -94,13 +99,10 @@
             <br></br>
             <div class="row">
                 <div class="col-md-1">
-                    <form action="registrarLocal">
-                        <input type="submit" value="Nuevo Local C.C." class="btn btn-success"/>
-                    </form>
                 </div>
                 <div class="col-md-10"></div>
                 <div class="col-md-1">
-                    <form action="atrasInicioAdministrador">
+                    <form action="atrasInicioCiente">
                         <input value="Atras" type="submit" class="btn btn-danger"/>
                     </form>  
                 </div>

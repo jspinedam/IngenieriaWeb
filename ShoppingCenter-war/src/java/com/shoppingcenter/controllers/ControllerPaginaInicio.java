@@ -86,31 +86,45 @@ public class ControllerPaginaInicio extends ActionSupport implements SessionAwar
     }
 
     //--//--//
-
     public String consultarPromociones() {
         return "success_gestionar_promociones";
     }
-    
-    //--//--//
 
+    //--//--//
     public String registrarPromocion() {
         return "success_registrar_promocion";
     }
     //--//--//
-    
-        //--//--//
 
+    //--//--//
     public String consultarGuiaCompraLocal() {
         return "success_gestionar_guiascompralocal";
     }
 
-    
-        //--//--//
-
+    //--//--//
     public String consultarGuiaCompraProducto() {
         return "success_gestionar_guiascompraproducto";
     }
+    //--//--//
 
+    public String consultarLocalCentroComercial() {
+        return "success_consultar_localcentrocomercial";
+    }
+    //--//--//
+
+    public String consultarPromocion() {
+        return "success_consultar_promociones";
+    }
+    //--//--//
+
+    public String consultarGuiaCompraProductoCliente() {
+        return "success_consultar_guiascompraproductos";
+    }
+    //--//--//
+
+    public String consultarGuiaCompraLocalCliente() {
+        return "success_consultar_guiascompralocales";
+    }
 
     @Override
     public void setSession(Map<String, Object> session) {

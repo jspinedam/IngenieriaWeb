@@ -64,11 +64,12 @@
                                     <th>Correo</th>
                                     <th>N° Local</th>
                                     <th>Telefono</th>
+                                    <th>Entrar</th>
                                 </tr>
                                 <%@page import="com.shoppingcenter.entidades.LocalCentroComercial"%>
                                 <%@page import="java.util.List"%>
                                 <%@page import="java.util.Map"%>
-                                <jsp:useBean id="localController" class="com.shoppingcenter.controllers.ControllerAdministrarLocalesCentroComercial2" />
+                                <jsp:useBean id="localController" class="com.shoppingcenter.controllers.ControllerConsultarLocalesCentroComercial" />
                                 <%
                                     List<LocalCentroComercial> listaLocalesCentroComercial = null;
                                     listaLocalesCentroComercial = localController.getListaLocalesCentroComercial();
@@ -82,6 +83,7 @@
                                     <td><%=emp.getCorreo()%></td>
                                     <td><%=emp.getNumerolocal()%></td>
                                     <td><%=emp.getTelefono()%></td>
+                                    <td>Entrar</td>
                                 </tr>
                                 <%
                                     }
@@ -94,13 +96,10 @@
             <br></br>
             <div class="row">
                 <div class="col-md-1">
-                    <form action="registrarLocal">
-                        <input type="submit" value="Nuevo Local C.C." class="btn btn-success"/>
-                    </form>
                 </div>
                 <div class="col-md-10"></div>
                 <div class="col-md-1">
-                    <form action="atrasInicioLocalCentroComercial">
+                    <form action="atrasInicioCliente">
                         <input value="Atras" type="submit" class="btn btn-danger"/>
                     </form>  
                 </div>

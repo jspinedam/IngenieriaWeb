@@ -94,4 +94,24 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <remote>com.shoppingcenter.beans.AdministrarGestionarGuiasCompraBORemote</remote>
     </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarLocalesCentroComercialBO2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarLocalesCentroComercialBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarPromocionesBO1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarPromocionesBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarGuiasCompraBO2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarGuiasCompraBORemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>AdministrarGestionarGuiasCompraBO3</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>com.shoppingcenter.beans.AdministrarGestionarGuiasCompraBORemote</remote>
+    </ejb-ref>
 </web-app>
