@@ -16,11 +16,18 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
+ * Facade: GuiaCompraProducto Este facade permite realizar los procesos de
+ * persistencia de la tabla guiacompraproducto en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class GuiaCompraProductoFacade extends AbstractFacade<GuiaCompraProducto> {
+
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -32,7 +39,14 @@ public class GuiaCompraProductoFacade extends AbstractFacade<GuiaCompraProducto>
     public GuiaCompraProductoFacade() {
         super(GuiaCompraProducto.class);
     }
-    
+
+    /**
+     * Metodo encargado de obtener un registro GuiaCompraProducto por medio del
+     * id interno de la guiacompra
+     *
+     * @param guiaCompra Id del registro
+     * @return GuiaCompraProducto referenciado por el id dado
+     */
     public List<GuiaCompraProducto> consultarGuiasCompraPorIDGuia(BigInteger guiaCompra) {
         try {
             em.clear();
@@ -47,6 +61,13 @@ public class GuiaCompraProductoFacade extends AbstractFacade<GuiaCompraProducto>
         }
     }
 
+    /**
+     * Metodo encargado de obtener un registro GuiaCompraProducto por medio de
+     * su id
+     *
+     * @param idRegistro Id del registro
+     * @return GuiaCompraProducto referenciado por el id dado
+     */
     public GuiaCompraProducto buscarGuiaCompraProductoPorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -61,6 +82,13 @@ public class GuiaCompraProductoFacade extends AbstractFacade<GuiaCompraProducto>
         }
     }
 
+    /**
+     * Metodo encargado de obtener registros GuiaCompraProducto por medio de
+     * parametros de busqueda
+     *
+     * @param filters Map de parametros de busqueda
+     * @return Resultado de la consulta de GuiasComprasProductos
+     */
     public List<GuiaCompraProducto> buscarGuiasCompraProductosPorFiltrado(Map<String, String> filters) {
         try {
             final String alias = "a";
@@ -80,6 +108,14 @@ public class GuiaCompraProductoFacade extends AbstractFacade<GuiaCompraProducto>
         }
     }
 
+    /**
+     * Metodo encargado de adicionar los filtros de busqueda a la consulta
+     *
+     * @param jpql Consulta general (SELECT p FROM GuiaCompraProducto p)
+     * @param filters Lista de filtros de busqueda
+     * @param alias Alias de la tabla (p)
+     * @return String de la nueva consulta a realizar
+     */
     private String adicionarFiltros(String jpql, Map<String, String> filters, String alias) {
         final StringBuilder wheres = new StringBuilder();
         int camposFiltro = 0;
@@ -129,8 +165,14 @@ public class GuiaCompraProductoFacade extends AbstractFacade<GuiaCompraProducto>
         return jpql;
     }
 
+    /**
+     * Metodo encargado de asignar los valores la consulta (query)
+     *
+     * @param tq Consulta a realizar
+     * @param filters Filtros de busqueda
+     * @return Consulta a realizar con datos asignados
+     */
     private TypedQuery<GuiaCompraProducto> asignarValores(TypedQuery<GuiaCompraProducto> tq, Map<String, String> filters) {
-
         for (Map.Entry<String, String> entry : filters.entrySet()) {
             if (null != entry.getValue() && !entry.getValue().isEmpty()) {
                 if (("parametroNombre".equals(entry.getKey()))

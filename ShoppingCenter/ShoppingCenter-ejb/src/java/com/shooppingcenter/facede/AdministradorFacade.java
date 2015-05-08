@@ -16,12 +16,18 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
+ * Facade: Administrador Este facade permite realizar los procesos de
+ * persistencia de la tabla administrador en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class AdministradorFacade extends AbstractFacade<Administrador> {
 
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -34,6 +40,12 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
         super(Administrador.class);
     }
 
+    /**
+     * Metodo encargado de obtener un registro Administrador por medio de su id
+     *
+     * @param idRegistro Id del registro
+     * @return Administrador referenciado por el id dado
+     */
     public Administrador buscarAdministradorPorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -48,6 +60,13 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener un registro Administrador por medio del id
+     * del atributo Persona
+     *
+     * @param idPersona Id de la persona
+     * @return Administrador referenciado por el id persona dado
+     */
     public Administrador buscarAdministradorPorIDPersona(BigInteger idPersona) {
         try {
             em.clear();
@@ -62,6 +81,12 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
         }
     }
 
+    /**
+     * Metodo encagado de buscar todos los registro Administrador registrados en
+     * la base de datos
+     *
+     * @return Lista de registros administrador
+     */
     public List<Administrador> buscarAdministradoresRegistrados() {
         try {
             em.clear();
@@ -75,6 +100,13 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener registros Administrador por medio de
+     * parametros de busqueda
+     *
+     * @param filters Map de parametros de busqueda
+     * @return Resultado de la consulta de Administradores
+     */
     public List<Administrador> buscarAdministradorsPorFiltrado(Map<String, String> filters) {
         try {
             final String alias = "a";
@@ -94,6 +126,14 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
         }
     }
 
+    /**
+     * Metodo encargado de adicionar los filtros de busqueda a la consulta
+     *
+     * @param jpql Consulta general (SELECT p FROM Administrador p)
+     * @param filters Lista de filtros de busqueda
+     * @param alias Alias de la tabla (p)
+     * @return String de la nueva consulta a realizar
+     */
     private String adicionarFiltros(String jpql, Map<String, String> filters, String alias) {
         final StringBuilder wheres = new StringBuilder();
         int camposFiltro = 0;
@@ -166,8 +206,14 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
         return jpql;
     }
 
+    /**
+     * Metodo encargado de asignar los valores la consulta (query)
+     *
+     * @param tq Consulta a realizar
+     * @param filters Filtros de busqueda
+     * @return Consulta a realizar con datos asignados
+     */
     private TypedQuery<Administrador> asignarValores(TypedQuery<Administrador> tq, Map<String, String> filters) {
-
         for (Map.Entry<String, String> entry : filters.entrySet()) {
             if (null != entry.getValue() && !entry.getValue().isEmpty()) {
                 if (("parametroGenero".equals(entry.getKey()))

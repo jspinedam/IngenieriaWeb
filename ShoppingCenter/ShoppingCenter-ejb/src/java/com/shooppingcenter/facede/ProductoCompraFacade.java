@@ -13,12 +13,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
+ * Facade: ProductoCompra Este facade permite realizar los procesos de
+ * persistencia de la tabla productocompra en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class ProductoCompraFacade extends AbstractFacade<ProductoCompra> {
 
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -31,6 +37,12 @@ public class ProductoCompraFacade extends AbstractFacade<ProductoCompra> {
         super(ProductoCompra.class);
     }
 
+    /**
+     * Metodo encargado de obtener un registro ProductoCompra por medio de su id
+     *
+     * @param idRegistro Id del registro
+     * @return ProductoCompra referenciado por el id dado
+     */
     public ProductoCompra buscarProductoCompraPorID(BigInteger idRegistro) {
         try {
             em.clear();

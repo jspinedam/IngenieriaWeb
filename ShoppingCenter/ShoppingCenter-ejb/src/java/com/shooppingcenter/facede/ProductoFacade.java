@@ -16,11 +16,18 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
+ * Facade: Producto Este facade permite realizar los procesos de persistencia de
+ * la tabla producto en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class ProductoFacade extends AbstractFacade<Producto> {
+
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -32,6 +39,13 @@ public class ProductoFacade extends AbstractFacade<Producto> {
     public ProductoFacade() {
         super(Producto.class);
     }
+
+    /**
+     * Metodo encargado de obtener un registro Producto por medio de su id
+     *
+     * @param idRegistro Id del registro
+     * @return Producto referenciado por el id dado
+     */
     public Producto buscarProductoPorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -46,6 +60,14 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener un producto por medio de su codigo y del
+     * local asociado
+     *
+     * @param codigo Codigo producto
+     * @param local Local al que pertenece el producto
+     * @return Producto identificado con los parametros
+     */
     public Producto buscarProductoPorCodigoYLocal(String codigo, BigInteger local) {
         try {
             em.clear();
@@ -61,6 +83,12 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener los productos asociados a un local
+     *
+     * @param idLocal Id del local
+     * @return Lista de productos
+     */
     public List<Producto> buscarProductosPorIDLocal(BigInteger idLocal) {
         try {
             em.clear();
@@ -75,6 +103,13 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener registros Producto por medio de parametros de
+     * busqueda
+     *
+     * @param filters Map de parametros de busqueda
+     * @return Resultado de la consulta de Productos
+     */
     public List<Producto> buscarProductosPorFiltrado(Map<String, String> filters) {
         try {
             final String alias = "a";
@@ -94,6 +129,14 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         }
     }
 
+    /**
+     * Metodo encargado de adicionar los filtros de busqueda a la consulta
+     *
+     * @param jpql Consulta general (SELECT p FROM Producto p)
+     * @param filters Lista de filtros de busqueda
+     * @param alias Alias de la tabla (p)
+     * @return String de la nueva consulta a realizar
+     */
     private String adicionarFiltros(String jpql, Map<String, String> filters, String alias) {
         final StringBuilder wheres = new StringBuilder();
         int camposFiltro = 0;
@@ -142,8 +185,14 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         return jpql;
     }
 
+    /**
+     * Metodo encargado de asignar los valores la consulta (query)
+     *
+     * @param tq Consulta a realizar
+     * @param filters Filtros de busqueda
+     * @return Consulta a realizar con datos asignados
+     */
     private TypedQuery<Producto> asignarValores(TypedQuery<Producto> tq, Map<String, String> filters) {
-
         for (Map.Entry<String, String> entry : filters.entrySet()) {
             if (null != entry.getValue() && !entry.getValue().isEmpty()) {
                 if (("parametroTipoProducto".equals(entry.getKey()))
@@ -159,5 +208,5 @@ public class ProductoFacade extends AbstractFacade<Producto> {
         }
         return tq;
     }
- 
+
 }

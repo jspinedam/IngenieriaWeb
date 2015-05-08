@@ -14,12 +14,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
+ * Facade: Persona Este facade permite realizar los procesos de persistencia de
+ * la tabla persona en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class PersonaFacade extends AbstractFacade<Persona> {
 
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -32,6 +38,12 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         super(Persona.class);
     }
 
+    /**
+     * Metodo encargado de obtener un registro Persona por medio de su id
+     *
+     * @param idRegistro Id del registro
+     * @return Persona referenciado por el id dado
+     */
     public Persona buscarPersonaPorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -46,6 +58,12 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener el ultimo registro Persona registrado en la
+     * base de datos
+     *
+     * @return Ultimo registro persona
+     */
     public Persona obtenerUltimaPersonaRegistrada() {
         try {
             em.clear();
@@ -65,6 +83,14 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener una persona por medio de su usuario y
+     * contraseña
+     *
+     * @param usuario Usuario persona
+     * @param contrasenia Contraseña persona
+     * @return Registro identificado con los parametros dados
+     */
     public Persona obtenerPersonaPorInformacionUsuario(String usuario, String contrasenia) {
         try {
             em.clear();
@@ -84,6 +110,12 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener una persona por medio de su documento
+     *
+     * @param documento Documento persona
+     * @return Persona identificada con el documento dado
+     */
     public Persona buscarPersonaPorNumeroDocumento(String documento) {
         try {
             em.clear();
@@ -98,6 +130,12 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener una persona por medio del usuario de ingreso
+     *
+     * @param usuario Usuario a consultar
+     * @return Persona identificada con el usuario
+     */
     public Persona buscarPersonaPorUsuario(String usuario) {
         try {
             em.clear();

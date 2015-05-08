@@ -14,11 +14,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
+ * Facade: GuiaCompra Este facade permite realizar los procesos de persistencia
+ * de la tabla guiacompra en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class GuiaCompraFacade extends AbstractFacade<GuiaCompra> {
+
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -30,6 +37,13 @@ public class GuiaCompraFacade extends AbstractFacade<GuiaCompra> {
     public GuiaCompraFacade() {
         super(GuiaCompra.class);
     }
+
+    /**
+     * Metodo encargado de obtener un registro GuiaCompra por medio de su id
+     *
+     * @param idRegistro Id del registro
+     * @return GuiaCompra referenciado por el id dado
+     */
     public GuiaCompra buscarGuiaCompraPorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -44,6 +58,12 @@ public class GuiaCompraFacade extends AbstractFacade<GuiaCompra> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener el ultimo registro GuiaCompra registrado en
+     * la base de datos
+     *
+     * @return Ultimo registro GuiaCompra
+     */
     public GuiaCompra obtenerUltimaGuiaCompraRegistrada() {
         try {
             em.clear();

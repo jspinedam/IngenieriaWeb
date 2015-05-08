@@ -16,12 +16,18 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
+ * Facade: Cliente Este facade permite realizar los procesos de persistencia de
+ * la tabla cliente en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class ClienteFacade extends AbstractFacade<Cliente> {
 
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -34,6 +40,12 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         super(Cliente.class);
     }
 
+    /**
+     * Metodo encargado de obtener un registro Cliente por medio de su id
+     *
+     * @param idRegistro Id del registro
+     * @return Cliente referenciado por el id dado
+     */
     public Cliente buscarClientePorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -48,6 +60,13 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener un registro Cliente por medio del id del
+     * atributo Persona
+     *
+     * @param idPersona Id de la persona
+     * @return Cliente referenciado por el id persona dado
+     */
     public Cliente buscarClientePorIDPersona(BigInteger idPersona) {
         try {
             em.clear();
@@ -62,6 +81,12 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         }
     }
 
+    /**
+     * Metodo encagado de buscar todos los registro Cliente registrados en la
+     * base de datos
+     *
+     * @return Lista de registros clientes
+     */
     public List<Cliente> buscarClientesRegistrados() {
         try {
             em.clear();
@@ -75,6 +100,13 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener registros CLiente por medio de parametros de
+     * busqueda
+     *
+     * @param filters Map de parametros de busqueda
+     * @return Resultado de la consulta de Clientes
+     */
     public List<Cliente> buscarClientesPorFiltrado(Map<String, String> filters) {
         try {
             final String alias = "a";
@@ -94,6 +126,14 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         }
     }
 
+    /**
+     * Metodo encargado de adicionar los filtros de busqueda a la consulta
+     *
+     * @param jpql Consulta general (SELECT p FROM Cliente p)
+     * @param filters Lista de filtros de busqueda
+     * @param alias Alias de la tabla (p)
+     * @return String de la nueva consulta a realizar
+     */
     private String adicionarFiltros(String jpql, Map<String, String> filters, String alias) {
         final StringBuilder wheres = new StringBuilder();
         int camposFiltro = 0;
@@ -166,8 +206,14 @@ public class ClienteFacade extends AbstractFacade<Cliente> {
         return jpql;
     }
 
+    /**
+     * Metodo encargado de asignar los valores la consulta (query)
+     *
+     * @param tq Consulta a realizar
+     * @param filters Filtros de busqueda
+     * @return Consulta a realizar con datos asignados
+     */
     private TypedQuery<Cliente> asignarValores(TypedQuery<Cliente> tq, Map<String, String> filters) {
-
         for (Map.Entry<String, String> entry : filters.entrySet()) {
             if (null != entry.getValue() && !entry.getValue().isEmpty()) {
                 if (("parametroGenero".equals(entry.getKey()))

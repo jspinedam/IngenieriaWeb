@@ -16,11 +16,18 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
+ * Facade: GuiaCompraLocal Este facade permite realizar los procesos de
+ * persistencia de la tabla guiacompralocal en la base de datos del sistema
  *
- * @author Pineda
+ * @author PinedaSoftware
+ * @version 1.0
  */
 @Stateless
 public class GuiaCompraLocalFacade extends AbstractFacade<GuiaCompraLocal> {
+
+    /**
+     * Contexto de persistencia de la base de datos
+     */
     @PersistenceContext(unitName = "ShoppingCenter-ejbPU")
     private EntityManager em;
 
@@ -32,7 +39,14 @@ public class GuiaCompraLocalFacade extends AbstractFacade<GuiaCompraLocal> {
     public GuiaCompraLocalFacade() {
         super(GuiaCompraLocal.class);
     }
-    
+
+    /**
+     * Metodo encargado de obtener un registro GuiaCompraLocal por medio del id
+     * interno de la guiacompra
+     *
+     * @param guiaCompra Id del registro
+     * @return GuiaCompraLocal referenciado por el id dado
+     */
     public List<GuiaCompraLocal> consultarGuiasCompraPorIDGuia(BigInteger guiaCompra) {
         try {
             em.clear();
@@ -47,6 +61,13 @@ public class GuiaCompraLocalFacade extends AbstractFacade<GuiaCompraLocal> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener un registro GuiaCompraLocal por medio de su
+     * id
+     *
+     * @param idRegistro Id del registro
+     * @return GuiaCompraLocal referenciado por el id dado
+     */
     public GuiaCompraLocal buscarGuiaCompraLocalPorID(BigInteger idRegistro) {
         try {
             em.clear();
@@ -61,6 +82,13 @@ public class GuiaCompraLocalFacade extends AbstractFacade<GuiaCompraLocal> {
         }
     }
 
+    /**
+     * Metodo encargado de obtener registros GuiaCompraLocal por medio de
+     * parametros de busqueda
+     *
+     * @param filters Map de parametros de busqueda
+     * @return Resultado de la consulta de GuiasComprasLocales
+     */
     public List<GuiaCompraLocal> buscarGuiasCompraLocalesPorFiltrado(Map<String, String> filters) {
         try {
             final String alias = "a";
@@ -80,6 +108,14 @@ public class GuiaCompraLocalFacade extends AbstractFacade<GuiaCompraLocal> {
         }
     }
 
+    /**
+     * Metodo encargado de adicionar los filtros de busqueda a la consulta
+     *
+     * @param jpql Consulta general (SELECT p FROM GuiaCompraLocal p)
+     * @param filters Lista de filtros de busqueda
+     * @param alias Alias de la tabla (p)
+     * @return String de la nueva consulta a realizar
+     */
     private String adicionarFiltros(String jpql, Map<String, String> filters, String alias) {
         final StringBuilder wheres = new StringBuilder();
         int camposFiltro = 0;
@@ -129,8 +165,14 @@ public class GuiaCompraLocalFacade extends AbstractFacade<GuiaCompraLocal> {
         return jpql;
     }
 
+    /**
+     * Metodo encargado de asignar los valores la consulta (query)
+     *
+     * @param tq Consulta a realizar
+     * @param filters Filtros de busqueda
+     * @return Consulta a realizar con datos asignados
+     */
     private TypedQuery<GuiaCompraLocal> asignarValores(TypedQuery<GuiaCompraLocal> tq, Map<String, String> filters) {
-
         for (Map.Entry<String, String> entry : filters.entrySet()) {
             if (null != entry.getValue() && !entry.getValue().isEmpty()) {
                 if (("parametroNombre".equals(entry.getKey()))
