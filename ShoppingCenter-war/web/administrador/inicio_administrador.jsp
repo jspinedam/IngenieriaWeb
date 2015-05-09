@@ -1,6 +1,6 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@page import="java.util.ResourceBundle"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,6 +23,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image: url('http://www.ucentral.edu.co/images/template_images/ucentral/fondos/fondo_template_default.jpg'); background-repeat: repeat; background-position: 0% 0%; background-attachment: fixed; background-color: #ffffff;">
+        <% ResourceBundle resource = ResourceBundle.getBundle("i18n.inicioadministrador", request.getLocale());%>
         <div class="container">
             <div class="row">
                 <!-- Navigation -->
@@ -42,17 +43,17 @@
                             </a>
                             <p class="navbar-text pull-left ">
                                 <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
-                                Conectado como: <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>
+                                <%=resource.getString("conectado")%> <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>
                             </p>
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="#">Configurar Usuario</a>
+                                    <a href="#"><%=resource.getString("configurarUsuario")%></a>
                                 </li>
                                 <li>
-                                    <a href="#" >Cerrar Sesion</a>
+                                    <a href="#" ><%=resource.getString("cerrarSesion")%></a>
                                 </li>
                             </ul>
                         </div>
@@ -70,16 +71,16 @@
                     <div class="tab-content" id="tabs-868824">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#panelUsuarios" data-toggle="tab">Usuarios</a>
+                                <a href="#panelUsuarios" data-toggle="tab"><%=resource.getString("tabUsuario")%></a>
                             </li>
                             <li>
-                                <a href="#panelLocales" data-toggle="tab">Locales</a>
+                                <a href="#panelLocales" data-toggle="tab"><%=resource.getString("tabLocal")%></a>
                             </li>
                             <li>
-                                <a href="#panelPromociones" data-toggle="tab">Promociones</a>
+                                <a href="#panelPromociones" data-toggle="tab"><%=resource.getString("tabPromocion")%></a>
                             </li>
                             <li>
-                                <a href="#panelGuiasCompra" data-toggle="tab">Guias de Compra</a>
+                                <a href="#panelGuiasCompra" data-toggle="tab"><%=resource.getString("tabGuia")%></a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -89,14 +90,14 @@
                                         <div class="thumbnail">
                                             <img alt="300x200" class="img-responsive img-rounded" src="img/cliente.jpg" />
                                             <div class="caption">
-                                                <h3>
-                                                    CLIENTES
+                                                <h3 class="text-uppercase">
+                                                    <%=resource.getString("cliente")%>
                                                 </h3>
                                                 <p>
                                                     Esta opción permite administrar los clientes registrados en el sistema de información. 
                                                 </p>
                                                 <form action="gestionarCliente">
-                                                    <input type="submit" class="btn btn-primary" value="Aceptar">
+                                                    <input type="submit" class="btn btn-primary" value="<%=resource.getString("aceptar")%>">
                                                 </form>
                                             </div>
                                         </div>
@@ -105,14 +106,14 @@
                                         <div class="thumbnail">
                                             <img alt="300x200" class="img-responsive img-rounded" src="img/trabajador.jpg" />
                                             <div class="caption">
-                                                <h3>
-                                                    TRABAJADORES
+                                                <h3 class="text-uppercase">
+                                                    <%=resource.getString("trabajador")%>
                                                 </h3>
                                                 <p>
                                                     Esta opción permite administrar los trabajadores registrados en el sistema de información. 
                                                 </p>
                                                 <form action="gestionarTrabajador">
-                                                    <input type="submit" class="btn btn-primary" value="Aceptar">
+                                                    <input type="submit" class="btn btn-primary" value="<%=resource.getString("aceptar")%>">
                                                 </form>
                                             </div>
                                         </div>
@@ -121,15 +122,15 @@
                                         <div class="thumbnail">
                                             <img alt="300x200" class="img-responsive img-rounded" src="img/administrador.png" />
                                             <div class="caption">
-                                                <h3>
-                                                    ADMINISTRADORES
+                                                <h3 class="text-uppercase">
+                                                    <%=resource.getString("administrador")%>
                                                 </h3>
                                                 <p>
                                                     Esta opción permite administrar los administradores registrados en el sistema de información. 
                                                 </p>
                                                 <p>
                                                 <form action="gestionarAdministrador">
-                                                    <input type="submit" class="btn btn-primary" value="Aceptar">
+                                                    <input type="submit" class="btn btn-primary" value="<%=resource.getString("aceptar")%>">
                                                 </form>
                                                 </p>
                                             </div>
@@ -143,15 +144,15 @@
                                         <div class="thumbnail">
                                             <img alt="300x400" class="img-responsive img-rounded" src="img/locales.jpg" />
                                             <div class="caption">
-                                                <h3>
-                                                    Locales
+                                                <h3 class="text-uppercase">
+                                                    <%=resource.getString("local")%>
                                                 </h3>
                                                 <p>
                                                     Por medio de esta opción se puede administrar los locales registrados en el centro comercial.
                                                 </p>
                                                 <p>
                                                 <form action="consultarLocales">
-                                                    <input type="submit" name="Atras" class="btn btn-primary"/>
+                                                    <input type="submit" name="Aceptar" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                                 </form>
                                                 </p>
                                             </div>
@@ -175,15 +176,15 @@
                                         <div class="thumbnail">
                                             <img alt="300x400" class="img-responsive img-rounded" src="img/promociones.jpg" />
                                             <div class="caption">
-                                                <h3>
-                                                    Promociones
+                                                <h3 class="text-uppercase">
+                                                    <%=resource.getString("promocion")%>
                                                 </h3>
                                                 <p>
                                                     Esta opción permite administrar las promociones registradas por los locales.
                                                 </p>
                                                 <p>
                                                 <form action="consultarPromociones">
-                                                    <input type="submit" name="Atras" class="btn btn-primary"/>
+                                                    <input type="submit" name="Aceptar" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                                 </form>
                                                 </p>
                                             </div>
@@ -207,15 +208,15 @@
                                         <div class="thumbnail">
                                             <img alt="300x400" class="img-responsive img-rounded" src="http://lorempixel.com/600/200/people" />
                                             <div class="caption">
-                                                <h3>
-                                                    Guias de Compra de Locales
+                                                <h3 class="text-uppercase">
+                                                    <%=resource.getString("guiaCompraLocal")%>
                                                 </h3>
                                                 <p>
                                                     Permite administrador la información de las guias de compra referentes a los locales.
                                                 </p>
                                                 <p>
                                                 <form action="consultarGuiaCompraLocal">
-                                                    <input type="submit" name="Atras" class="btn btn-primary"/>
+                                                    <input type="submit" name="Aceptar" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                                 </form>
                                                 </p>
                                             </div>
@@ -235,15 +236,15 @@
                                         <div class="thumbnail">
                                             <img alt="300x400" class="img-responsive img-rounded" src="img/guia_compra_producto.jpg" />
                                             <div class="caption">
-                                                <h3>
-                                                    Guias de Compra de Productos
+                                                <h3 class="text-uppercase">
+                                                    <%=resource.getString("guiaCompraProducto")%>
                                                 </h3>
                                                 <p>
                                                     Permite administrador la información de las guias de compra referentes a los productos.
                                                 </p>
                                                 <p>
                                                 <form action="consultarGuiaCompraProducto">
-                                                    <input type="submit" name="Atras" class="btn btn-primary"/>
+                                                    <input type="submit" name="Aceptar" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                                 </form>
                                                 </p>
                                             </div>

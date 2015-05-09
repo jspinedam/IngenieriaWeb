@@ -1,5 +1,5 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ResourceBundle"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +22,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image: url('http://www.ucentral.edu.co/images/template_images/ucentral/fondos/fondo_template_default.jpg'); background-repeat: repeat; background-position: 0% 0%; background-attachment: fixed; background-color: #ffffff;">
+        <% ResourceBundle resource = ResourceBundle.getBundle("i18n.registrarlocalcentrocomercial", request.getLocale());%>
         <div class="container">
             <div class="row">
                 <!-- Navigation -->
@@ -41,7 +42,7 @@
                             </a>
                             <p class="navbar-text pull-left ">
                                 <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
-                                Conectado como: <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
+                                <%=resource.getString("conectado")%>  <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
                             </p>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -61,11 +62,11 @@
                         <div class="col-md-8 column">
                             <form action="registrarLocalCentroComercial">
                                 <fieldset>
-                                    <legend class="text-info">Datos Basicos Local</legend>
+                                    <legend class="text-info"><%=resource.getString("datos")%></legend>
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputNombre">
-                                                Nombre Local*
+                                                <%=resource.getString("nombre")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="30" name="inputNombre" required="true" class="form-control"/>
@@ -73,7 +74,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputRazon">
-                                                Razón Social*
+                                                <%=resource.getString("razon")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="30" name="inputRazon" required="true" class="form-control"/>
@@ -81,7 +82,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputSlogan">
-                                                Slogan Local*
+                                                <%=resource.getString("slogan")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="80" name="inputSlogan" required="true" class="form-control"/>
@@ -89,7 +90,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputNumeroLocal">
-                                                Número Local*
+                                                <%=resource.getString("numero")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="5" name="inputNumeroLocal" required="true" class="form-control"/>
@@ -97,7 +98,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputCorreo">
-                                                Correo Contacto*
+                                                <%=resource.getString("correo")%>*
                                             </label> 
                                         </strong>
                                         <div class="input-group">
@@ -108,7 +109,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputTelefono">
-                                                Telefono Local*
+                                                <%=resource.getString("telefono")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="20" name="inputTelefono" required="true" class="form-control"/>
@@ -116,37 +117,33 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputEncargado">
-                                                Encargado Local
+                                                <%=resource.getString("encargado")%>
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="30" name="inputEncargado" class="form-control"/>
                                     </div>                                    
                                 </fieldset>
-                                <button type="submit" class="btn btn-success">Registrar</button>
+                                <button type="submit" class="btn btn-success"><%=resource.getString("registrar")%></button>
                                 <span></span>
                                 <span></span>
                             </form>
                         </div>
                         <div class="col-md-4 column">
                             <h2 class="info">
-                                Información Registro
+                                <%=resource.getString("infoRegistro")%>
                             </h2>
                             <p>
-                                Los campos marcados con (*) son obligatorios. Los caracteres especiales estan prohibidos para el registro de la información. 
-                            </p>
-                            <p>
-                                Este registro es unicamente para LOCALES DEL CENTRO COMERCIAL, al momento de ser registrado en el sistema su estado sera ACTIVO, en caso contrario es necesario que un administrador del sistema que gestione el proceso de activacion. 
+                                <%=resource.getString("infoRegistro2")%>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="row col-md-12">
                     <div class="col-md-11">
-
                     </div>
                     <div class="col-md-1">
                         <form action="consultarLocales">
-                            <input type="submit" name="Atras" value="Atras" class="btn btn-danger right"/>
+                            <input type="submit" name="Atras" value="<%=resource.getString("atras")%>" class="btn btn-danger right"/>
                         </form>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ResourceBundle"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +22,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image: url('http://www.ucentral.edu.co/images/template_images/ucentral/fondos/fondo_template_default.jpg'); background-repeat: repeat; background-position: 0% 0%; background-attachment: fixed; background-color: #ffffff;">
+        <% ResourceBundle resource = ResourceBundle.getBundle("i18n.gestionaradministradores", request.getLocale());%>
         <div class="container">
             <div class="row">
                 <!-- Navigation -->
@@ -39,6 +40,10 @@
                                 <img alt="500x100" height="50" width="100" class="img-responsive" src="../img/logo-universidad-central.png" />
                                 <a class="navbar-brand topnav" href="#">E-Shopping Center</a>    
                             </a>
+                            <p class="navbar-text pull-left ">
+                                <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
+                                <%=resource.getString("conectado")%> <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
+                            </p>
                         </div>
                         <!-- /.navbar-collapse -->
                     </div>
@@ -55,15 +60,15 @@
                 <div class="col-md-12 column">
                     <div id="resultadosBusqueda" class="row clearfix col-md-12">
                         <fieldset style="border: black;border-radius: 10px;">
-                            <h3><legend style="color: darkblue"><strong>RESULTADOS DE BUSQUEDA</strong></legend></h3>
+                            <h3><legend style="color: darkblue" class="text-uppercase"><strong><%=resource.getString("resultado")%></strong></legend></h3>
                             <div class="row">
                                 <table border=1 width="100%">
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Correo</th>
-                                        <th>Usuario</th>
-                                        <th>Cargo</th>
+                                        <th><%=resource.getString("nombre")%></th>
+                                        <th><%=resource.getString("apellido")%></th>
+                                        <th><%=resource.getString("correo")%></th>
+                                        <th><%=resource.getString("usuario")%></th>
+                                        <th><%=resource.getString("cargo")%></th>
                                     </tr>
                                     <%@page import="com.shoppingcenter.entidades.Administrador"%>
                                     <%@page import="java.util.List"%>
@@ -96,13 +101,13 @@
                 <div class="row">
                     <div class="col-md-1">
                         <form action="registrarAdministrador">
-                            <input type="submit" class="btn btn-success" value="Nuevo Administrador"/>                        
+                            <input type="submit" class="btn btn-success" value=" <%=resource.getString("nuevoAdministrador")%>"/>                        
                         </form>
                     </div>
                     <div class="col-md-10"></div>
                     <div class="col-md-1">
                         <form action="atrasInicioAdministrador">
-                            <input type="submit" class="btn btn-danger" value="Atras"/>                        
+                            <input type="submit" class="btn btn-danger" value=" <%=resource.getString("atras")%>"/>                        
                         </form>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@page import="java.util.ResourceBundle"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,6 +23,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image: url('http://www.ucentral.edu.co/images/template_images/ucentral/fondos/fondo_template_default.jpg'); background-repeat: repeat; background-position: 0% 0%; background-attachment: fixed; background-color: #ffffff;">
+        <% ResourceBundle resource = ResourceBundle.getBundle("i18n.iniciocliente", request.getLocale());%>
         <div class="container">
             <div class="row">
                 <!-- Navigation -->
@@ -42,17 +43,17 @@
                             </a>
                             <p class="navbar-text pull-left ">
                                 <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
-                                Conectado como: <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>
+                                <%=resource.getString("conectado")%>   <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>
                             </p>
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="#">Configurar Usuario</a>
+                                    <a href="#"><%=resource.getString("configurar")%></a>
                                 </li>
                                 <li>
-                                    <a href="#" >Cerrar Sesion</a>
+                                    <a href="#" ><%=resource.getString("cerrarSesion")%></a>
                                 </li>
                             </ul>
                         </div>
@@ -72,14 +73,14 @@
                             <div class="col-md-12">
                                 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
                                      class="img-responsive">
-                                <h1>Locales</h1>
+                                <h1><%=resource.getString("local")%></h1>
                                 <p></p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
                                     <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
                                     <br>Ut enim ad minim veniam, quis nostrud</p>
                                 <p>
                                 <form action="consultarLocalCentroComercial">
-                                    <input type="submit" class="btn btn-primary" value="Aceptar"/>
+                                    <input type="submit" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                 </form>
                                 </p>
                             </div>
@@ -92,21 +93,21 @@
                             <div class="col-md-6">
                                 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
                                      class="img-responsive">
-                                <h1>Promociones</h1>
+                                <h1><%=resource.getString("promocion")%></h1>
                                 <p></p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
                                     <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
                                     <br>Ut enim ad minim veniam, quis nostrud</p>
                                 <p>
                                 <form action="consultarPromocion">
-                                    <input type="submit" class="btn btn-primary" value="Aceptar"/>
+                                    <input type="submit" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                 </form>
                                 </p>
                             </div>
                             <div class="col-md-3">
                                 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
                                      class="img-responsive">
-                                <h1>Guias de Compra Producto
+                                <h1><%=resource.getString("guiaProducto")%>
                                     <br>
                                 </h1>
                                 <p></p>
@@ -115,14 +116,14 @@
                                     <br>Ut enim ad minim veniam, quis nostrud</p>
                                 <p>
                                 <form action="consultarGuiaCompraProductoCliente">
-                                    <input type="submit" class="btn btn-primary" value="Aceptar"/>
+                                    <input type="submit" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                 </form>
                                 </p>
                             </div>
                             <div class="col-md-3">
                                 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
                                      class="img-responsive">
-                                <h1>Guias de Compra Local
+                                <h1><%=resource.getString("guiaLocal")%>
                                     <br>
                                 </h1>
                                 <p></p>
@@ -131,7 +132,7 @@
                                     <br>Ut enim ad minim veniam, quis nostrud</p>
                                 <p>
                                 <form action="consultarGuiaCompraLocalCliente">
-                                    <input type="submit" class="btn btn-primary" value="Aceptar"/>
+                                    <input type="submit" class="btn btn-primary" value="<%=resource.getString("aceptar")%>"/>
                                 </form>
                                 </p>
                             </div>

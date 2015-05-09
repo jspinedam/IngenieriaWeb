@@ -1,6 +1,5 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ResourceBundle"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,6 +22,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image: url('http://www.ucentral.edu.co/images/template_images/ucentral/fondos/fondo_template_default.jpg'); background-repeat: repeat; background-position: 0% 0%; background-attachment: fixed; background-color: #ffffff;">
+        <% ResourceBundle resource = ResourceBundle.getBundle("i18n.registraradministrador", request.getLocale());%>
         <div class="container">
             <div class="row">
                 <!-- Navigation -->
@@ -42,7 +42,7 @@
                             </a>
                             <p class="navbar-text pull-left ">
                                 <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
-                                Conectado como: <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
+                                <%=resource.getString("conectado")%> <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
                             </p>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -62,11 +62,11 @@
                         <div class="col-md-8 column">
                             <form action="registrarAdministrador">
                                 <fieldset>
-                                    <legend class="text-info">Datos Personales</legend>
+                                    <legend class="text-info"><%=resource.getString("datosPersonales")%></legend>
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputNombre">
-                                                Nombre(s) Administrador*
+                                                <%=resource.getString("nombre")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="30" name="inputNombre" required="true" class="form-control"/>
@@ -74,7 +74,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputApellido">
-                                                Apellidos(s) Administrador*
+                                                <%=resource.getString("apellido")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="30" name="inputApellido" required="true" class="form-control"/>
@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputGenero">
-                                                Genero*
+                                                <%=resource.getString("genero")%>*
                                             </label> 
                                         </strong>
                                         <select name="inputGenero" required="true" class="form-control">
@@ -94,20 +94,20 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputTipoDocumento">
-                                                Tipo Documento*
+                                                <%=resource.getString("tipoDocumento")%>*
                                             </label> 
                                         </strong>
                                         <select name="inputTipoDocumento" required="true" class="form-control">
-                                            <option value="CC">Cedula Ciudadania</option>
-                                            <option value="CE">Cedula Extrangeria</option>
-                                            <option value="PP">Pasaporte</option>
-                                            <option value="TI">Tarjeta Identidad</option>
+                                            <option value="CC"><%=resource.getString("c")%></option>
+                                            <option value="CE"><%=resource.getString("ce")%></option>
+                                            <option value="PP"><%=resource.getString("pp")%></option>
+                                            <option value="TI"><%=resource.getString("tt")%></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputID">
-                                                Número Identificación*
+                                                <%=resource.getString("numeroId")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="30" name="inputID" required="true" class="form-control"/>
@@ -115,7 +115,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputEmail">
-                                                Correo Contacto*
+                                                <%=resource.getString("correo")%>*
                                             </label> 
                                         </strong>
                                         <div class="input-group">
@@ -126,7 +126,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputCargo">
-                                                Cargo Administrador*
+                                                <%=resource.getString("cargo")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="30" name="inputCargo" required="true" class="form-control"/>
@@ -134,7 +134,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputTelefono">
-                                                Telefono Administrador
+                                                <%=resource.getString("telefono")%>
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="10" name="inputTelefono" required="true" class="form-control"/>
@@ -142,7 +142,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputUsuario">
-                                                Usuario*
+                                                <%=resource.getString("usuario")%>*
                                             </label> 
                                         </strong>
                                         <input type="text" maxlength="20" name="inputUsuario" required="true" class="form-control"/>
@@ -150,7 +150,7 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputContrasenia">
-                                                Contraseña*
+                                                <%=resource.getString("password")%>*
                                             </label> 
                                         </strong>
                                         <input type="password" maxlength="20" name="inputContrasenia" required="true" class="form-control"/>
@@ -158,24 +158,23 @@
                                     <div class="form-group">
                                         <strong>
                                             <label for="inputContraseniaConfirma">
-                                                Confirmar Contraseña*
+                                                <%=resource.getString("password2")%>*
                                             </label> 
                                         </strong>
                                         <input type="password" maxlength="45" name="inputContraseniaConfirma" required="true" class="form-control"/>
                                     </div>
                                 </fieldset>
-                                <button type="submit" class="btn btn-success">Registrar</button>
+                                <button type="submit" class="btn btn-success"><%=resource.getString("registrar")%></button>
                                 <span></span>
                                 <span></span>
                             </form>
                         </div>
                         <div class="col-md-4 column">
                             <h2 class="info">
-                                Información Registro
+                                <%=resource.getString("infoRegistro")%>
                             </h2>
                             <p>
-                                Los campos marcados con (*) son obligatorios. Los caracteres especiales estan prohibidos para el registro de la información. 
-                                Este registro es unicamente para ADMINISTRADORES.
+                                <%=resource.getString("ingoRegistro2")%>
                             </p>
                         </div>
                     </div>
@@ -185,7 +184,7 @@
                     </div>
                     <div class="col-md-1">
                         <form action="gestionarAdministrador">
-                            <input type="submit" value="Atras" name="Atras" class="btn btn-danger right"/>
+                            <input type="submit" value="<%=resource.getString("atras")%>" name="Atras" class="btn btn-danger right"/>
                         </form>
                     </div>
                 </div>
