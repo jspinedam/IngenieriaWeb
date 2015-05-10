@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ResourceBundle"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8"/>
