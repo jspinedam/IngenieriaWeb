@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@page import="java.util.ResourceBundle"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +23,7 @@
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image: url('http://www.ucentral.edu.co/images/template_images/ucentral/fondos/fondo_template_default.jpg'); background-repeat: repeat; background-position: 0% 0%; background-attachment: fixed; background-color: #ffffff;">
+        <% ResourceBundle resource = ResourceBundle.getBundle("i18n.consultaguiascompraslocales", request.getLocale());%>
         <div class="container">
             <div class="row">
                 <!-- Navigation -->
@@ -41,7 +43,7 @@
                             </a>
                             <p class="navbar-text pull-left ">
                                 <jsp:useBean id="sesion" class="com.shoppingcenter.controllers.ControllerPaginaInicio" scope="page"/>
-                                Conectado como: <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
+                                <%=resource.getString("conectado")%> <label class="text-uppercase" style="color: darkblue;text-transform: uppercase">${sesion.obtejerUsuarioConectado()}</label>                          
                             </p>
                         </div>
                         <!-- /.navbar-collapse -->
@@ -56,16 +58,16 @@
             <div class="row">
                 <div id="resultadosBusqueda" class="row clearfix col-md-12">
                     <fieldset style="border: black;border-radius: 10px;">
-                        <h3><legend style="color: darkblue"><strong>RESULTADOS DE BUSQUEDA</strong></legend></h3>
+                        <h3><legend style="color: darkblue"><strong><%=resource.getString("resultado")%></strong></legend></h3>
                         <div class="row">
                             <table border=1 width="100%">
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Codigo</th>
-                                    <th>Caract. Comun</th>
-                                    <th>Nombre Local</th>
-                                    <th>N° Local</th>
-                                    <th>Telefono</th>
+                                    <th><%=resource.getString("nombre")%></th>
+                                    <th><%=resource.getString("codigo")%></th>
+                                    <th><%=resource.getString("caracteristica")%></th>
+                                    <th><%=resource.getString("nombreLocal")%></th>
+                                    <th><%=resource.getString("nLocal")%></th>
+                                    <th><%=resource.getString("telefono")%></th>
 
                                 </tr>
                                 <%@page import="com.shoppingcenter.entidades.GuiaCompraLocal"%>
@@ -98,12 +100,10 @@
             </div>
             <br></br>
             <div class="row">
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-10"></div>
+                <div class="col-md-11"></div>
                 <div class="col-md-1">
                     <form action="atrasInicioCiente">
-                        <input value="Atras" type="submit" class="btn btn-danger"/>
+                        <input value="<%=resource.getString("atras")%>" type="submit" class="btn btn-danger"/>
                     </form>  
                 </div>
             </div>
